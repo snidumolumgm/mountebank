@@ -8,6 +8,9 @@ WORKDIR /app
 COPY mountebank-*.tgz ./
 RUN npm install --production -g mountebank-*.tgz && npm cache clean -f
 
+# Copy imposter file
+COPY imposter.ejs /tmp
+
 # Run as a non-root user
 RUN adduser -D mountebank
 RUN chown -R mountebank /app
@@ -15,4 +18,4 @@ USER mountebank
 
 EXPOSE 2525
 
-ENTRYPOINT ["mb"]
+ENTRYPOINT ["mb", "--configfile", "/tmp/imposter.ejs", "--allowInjection", "--loglevel" "debug"]
