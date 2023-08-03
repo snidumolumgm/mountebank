@@ -1,0 +1,3390 @@
+{
+    "port": 4545,
+    "protocol": "http",
+    "stubs": [
+        {
+            "predicates": [
+                {
+                    "contains": {
+                        "body": "seats_hold_specific"
+                    }
+                },
+				{
+                    "jsonpath": {
+                         "selector": "$.command1.seats.length"
+                    },
+                    "equals": { "body": "1" }
+                }
+				
+            ],
+            "responses": [
+			{
+				"inject": "function () {return {body: { \"header\": { \"src_sys_type\": \"${SrcSysType}\", \"archtics_version\": \"${archticsVersion}\", \"ver\": \"${ver}\", \"src_sys_name\": \"${SrcSysName}\", \"ats_version\": \"4.97.1\", \"result\": 0 }, \"command1\": { \"seats\": [ { \"last_seat\": \"${lastSeat}\", \"section_name\": \"${sectionName}\", \"row_name\": \"${rowName}\", \"ticket_type_code\": \"${ticketTypeCode}\", \"seat_increment\": 1, \"event_name\": \"${eventName}\", \"seat_num\": \"${seatNum}\", \"block_number\": 0, \"price_code\": \"${priceCode}\", \"num_seats\": \"${numSeats}\", \"order_line_item\": 1, \"required_donation_ind\": \"N\" } ], \"order_num_out\": Math.floor(Math.random() * 900000000) + 100000000, \"cmd\": \"seats_hold_specific\", \"result\": 0, \"ref\": \"${REFID}\", \"sql_code\": 0, \"return_count\": 0 } }}}",
+				 "_behaviors":{
+                        "copy": [{
+                            "from": "body",
+                            "into": "${REFID}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..ref"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${SrcSysType}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..src_sys_type"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${archticsVersion}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..archtics_version"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${ver}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..ver"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${SrcSysName}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..src_sys_name"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${lastSeat}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..last_seat"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${sectionName}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..section_name"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${rowName}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..row_name"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${ticketTypeCode}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..ticket_type_code"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${eventName}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..event_name"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${seatNum}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..seat_num"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${priceCode}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..price_code"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${numSeats}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..num_seats"
+                            }
+                        }
+                        ]
+                    }
+			},
+			{
+				"is": {
+					"statusCode": 202,
+					"headers": {
+                            "Content-Type":"application/json"
+                        },
+						"body": {
+								"header": {
+									"ats_version": "4.97.1",
+									"result": 0,
+									"ver": "${ver}",
+									"src_sys_type": "${SrcSysType}",
+									"src_sys_name": "${SrcSysName}",
+									"archtics_version": "${archticsVersion}"
+								},
+								"command1": {
+									"cmd": "seats_hold_specific",
+									"ref": "${REFID}",
+									"result": 0
+								}
+								}
+				},
+				"_behaviors": {
+					"copy": [{
+						"from": "body",
+						"into": "${REFID}",
+						"using": {
+							"method":"jsonpath",
+                            "selector":"$..ref"
+						}
+					},
+                    {
+                        "from": "body",
+                        "into": "${SrcSysType}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..src_sys_type"
+                        }
+                    },
+                    {
+                        "from": "body",
+                        "into": "${archticsVersion}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..archtics_version"
+                        }
+                    },
+                    {
+                        "from": "body",
+                        "into": "${ver}",
+                        "using":{
+                             "method":"jsonpath",
+                            "selector":"$..ver"
+                        }
+                    },
+                    {
+                        "from": "body",
+                        "into": "${SrcSysName}",
+                        "using":{
+                            "method":"jsonpath",
+                             "selector":"$..src_sys_name"
+                        }
+                    }]
+				}
+			}
+            ]
+        },
+		{
+            "predicates": [
+                {
+                    "contains": {
+                        "body": "seats_hold_specific"
+                    }
+                },
+				{
+                    "jsonpath": {
+                         "selector": "$.command1.seats.length"
+                    },
+                    "equals": { "body": "2" }
+                }
+				
+            ],
+            "responses": [
+			{
+				"inject": "function () {return {body: { \"header\": { \"src_sys_type\": \"${SrcSysType}\", \"archtics_version\": \"${archticsVersion}\", \"ver\": \"${ver}\", \"src_sys_name\": \"${SrcSysName}\", \"ats_version\": \"4.97.1\", \"result\": 0 }, \"command1\": { \"seats\": [ { \"last_seat\": \"${lastSeat}\", \"section_name\": \"${sectionName}\", \"row_name\": \"${rowName}\", \"ticket_type_code\": \"${ticketTypeCode}\", \"seat_increment\": 1, \"event_name\": \"${eventName}\", \"seat_num\": \"${seatNum}\", \"block_number\": 0, \"price_code\": \"${priceCode}\", \"num_seats\": \"${numSeats}\", \"order_line_item\": 1, \"required_donation_ind\": \"N\" },{ \"last_seat\": \"${lastSeat}\", \"section_name\": \"${sectionName}\", \"row_name\": \"${rowName}\", \"ticket_type_code\": \"${ticketTypeCode}\", \"seat_increment\": 1, \"event_name\": \"${eventName}\", \"seat_num\": \"${seatNum}\", \"block_number\": 0, \"price_code\": \"${priceCode}\", \"num_seats\": \"${numSeats}\", \"order_line_item\": 1, \"required_donation_ind\": \"N\" } ], \"order_num_out\": Math.floor(Math.random() * 900000000) + 100000000, \"cmd\": \"seats_hold_specific\", \"result\": 0, \"ref\": \"${REFID}\", \"sql_code\": 0, \"return_count\": 0 } }}}",
+				 "_behaviors":{
+                        "copy": [{
+                            "from": "body",
+                            "into": "${REFID}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..ref"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${SrcSysType}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..src_sys_type"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${archticsVersion}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..archtics_version"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${ver}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..ver"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${SrcSysName}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..src_sys_name"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${lastSeat}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..last_seat"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${sectionName}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..section_name"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${rowName}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..row_name"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${ticketTypeCode}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..ticket_type_code"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${eventName}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..event_name"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${seatNum}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..seat_num"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${priceCode}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..price_code"
+                            }
+                        },
+                        {
+                            "from": "body",
+                            "into": "${numSeats}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..num_seats"
+                            }
+                        }
+                        ]
+                    }
+			},
+			{
+				"is": {
+					"statusCode": 202,
+					"headers": {
+                            "Content-Type":"application/json"
+                        },
+						"body": {
+								"header": {
+									"ats_version": "4.97.1",
+									"result": 0,
+									"ver": "${ver}",
+									"src_sys_type": "${SrcSysType}",
+									"src_sys_name": "${SrcSysName}",
+									"archtics_version": "${archticsVersion}"
+								},
+								"command1": {
+									"cmd": "seats_hold_specific",
+									"ref": "${REFID}",
+									"result": 0
+								}
+								}
+				},
+				"_behaviors": {
+					"copy": [{
+						"from": "body",
+						"into": "${REFID}",
+						"using": {
+							"method":"jsonpath",
+                            "selector":"$..ref"
+						}
+					},
+                    {
+                        "from": "body",
+                        "into": "${SrcSysType}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..src_sys_type"
+                        }
+                    },
+                    {
+                        "from": "body",
+                        "into": "${archticsVersion}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..archtics_version"
+                        }
+                    },
+                    {
+                        "from": "body",
+                        "into": "${ver}",
+                        "using":{
+                             "method":"jsonpath",
+                            "selector":"$..ver"
+                        }
+                    },
+                    {
+                        "from": "body",
+                        "into": "${SrcSysName}",
+                        "using":{
+                            "method":"jsonpath",
+                             "selector":"$..src_sys_name"
+                        }
+                    }]
+				}
+			}
+            ]
+        },
+        {
+            "predicates": [
+                {
+                    "contains": {
+                        "body": "service_charge_details"
+                    }
+                }
+            ],
+            "responses": [
+			{
+				"is": {
+					"statusCode": 202,
+					"headers": {
+                            "Content-Type":"application/json"
+                        },
+						"body": 
+						{
+							"header": {
+								"ats_version": "4.97.1",
+								"result": 0,
+								"ver": "${ver}",
+								"src_sys_type": "${SrcSysType}",
+								"src_sys_name": "${SrcSysName}",
+								"archtics_version": "${archticsVersion}"
+							},
+							"command1": {
+								"cmd": "service_charge_details",
+								"ref": "${REFID}",
+								"result": 0
+							}
+						}
+				},
+				"_behaviors": {
+					"copy": [{
+						"from": "body",
+						"into": "${REFID}",
+						"using": {
+							"method":"jsonpath",
+                            "selector":"$..ref"
+						}
+					},
+                    {
+                        "from": "body",
+                        "into": "${SrcSysType}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..src_sys_type"
+                        }
+                    },
+                    {
+                        "from": "body",
+                        "into": "${archticsVersion}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..archtics_version"
+                        }
+                    },
+                    {
+                        "from": "body",
+                        "into": "${ver}",
+                        "using":{
+                             "method":"jsonpath",
+                            "selector":"$..ver"
+                        }
+                    },
+                    {
+                        "from": "body",
+                        "into": "${SrcSysName}",
+                        "using":{
+                            "method":"jsonpath",
+                             "selector":"$..src_sys_name"
+                        }
+                    }]
+				}
+			},
+                {
+                    "is": {
+                        "headers": {
+                            "Content-Type":"application/json"
+                        },
+                        "body": "{ \"command1\": { \"service_charges\": [ { \"type\": \"R\", \"sc_amount\": 0.00, \"sc_name_long\": \"INET Variable Pricing Return\", \"sc_id\": -121, \"sc_name\": \"INTVRET\" }, { \"type\": \"R\", \"sc_amount\": 0.00, \"sc_name_long\": \"INET Consumer Return\", \"sc_id\": -120, \"sc_name\": \"INTRET\" }, { \"type\": \"T\", \"sc_amount\": 2.50, \"sc_name_long\": \"INET Corp Group Tran Fee\", \"sc_id\": -107, \"sc_name\": \"INGRPCT\" }, { \"type\": \"S\", \"sc_amount\": 0.00, \"sc_name_long\": \"INET Corp Group Svc Chg\", \"sc_id\": -106, \"sc_name\": \"INGRPCS\" }, { \"type\": \"S\", \"sc_amount\": 0.00, \"sc_name_long\": \"INET Corp Group TF Fee\", \"sc_id\": -105, \"sc_name\": \"INTFGRPC\" }, { \"type\": \"S\", \"sc_amount\": 0.00, \"sc_name_long\": \"INET Group Sale TF Fee\", \"sc_id\": -104, \"sc_name\": \"INTFGRPT\" }, { \"type\": \"S\", \"sc_amount\": 0.00, \"sc_name_long\": \"INET Suite Addnl TF Fee\", \"sc_id\": -103, \"sc_name\": \"INTFSUIT\" }, { \"type\": \"P\", \"sc_amount\": 3.00, \"sc_name_long\": \"INET Plan Purch TF Fee\", \"sc_id\": -102, \"sc_name\": \"INTFPLAN\" }, { \"type\": \"O\", \"sc_amount\": 1.00, \"sc_name_long\": \"INET Invoice Payment Fee\", \"sc_id\": -101, \"sc_name\": \"ININVSC\" }, { \"type\": \"O\", \"sc_amount\": 0.00, \"sc_name_long\": \"Delayed Delivery\", \"sc_id\": 205, \"sc_name\": \"INTDELIV\" }, { \"type\": \"O\", \"sc_amount\": 0.00, \"sc_name_long\": \"ZZZ Pick Up at Box Office\", \"sc_id\": 17038, \"sc_name\": \"INTGRPCP\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ Excalibur Aust. Bee Gees\", \"sc_id\": 35475, \"sc_name\": \"EXABGFEE\" }, { \"type\": \"S\", \"sc_amount\": 0.00, \"sc_name_long\": \"$0.00 API Fee\", \"sc_id\": 39579, \"sc_name\": \"APINOFEE\" }, { \"type\": \"S\", \"sc_amount\": 5.00, \"sc_name_long\": \"ZZZ NYNY Service Fee $5\", \"sc_id\": 40231, \"sc_name\": \"NYSERFE5\" }, { \"type\": \"S\", \"sc_amount\": 5.00, \"sc_name_long\": \"ZZZ HOB MGM Service Fee $5.00\", \"sc_id\": 56418, \"sc_name\": \"HOBMGM\" }, { \"type\": \"S\", \"sc_amount\": 4.95, \"sc_name_long\": \"HOB Service Fee $4.95\", \"sc_id\": 56419, \"sc_name\": \"HOBSVC\" }, { \"type\": \"S\", \"sc_amount\": 6.50, \"sc_name_long\": \"ZZZ BMG $6.50 MRI Service Fee\", \"sc_id\": 62805, \"sc_name\": \"BMG6MRI\" }, { \"type\": \"S\", \"sc_amount\": 3.50, \"sc_name_long\": \"ZZZ BMG $350\", \"sc_id\": 62806, \"sc_name\": \"BMG3FEE\" }, { \"type\": \"S\", \"sc_amount\": 10.95, \"sc_name_long\": \"ZZZ LOVE $10.95 Service Charge\", \"sc_id\": 68484, \"sc_name\": \"LV1095SC\" }, { \"type\": \"S\", \"sc_amount\": 10.95, \"sc_name_long\": \"ZZZ Zark $10.95 Service Charge\", \"sc_id\": 68565, \"sc_name\": \"ZA1095SC\" }, { \"type\": \"S\", \"sc_amount\": 10.95, \"sc_name_long\": \"ZZZ BE $10.95 Service Charge\", \"sc_id\": 68572, \"sc_name\": \"BE1095SC\" }, { \"type\": \"S\", \"sc_amount\": 10.95, \"sc_name_long\": \"ZZZ MJ $10.95 Service Fee\", \"sc_id\": 68669, \"sc_name\": \"MJ1095SF\" }, { \"type\": \"O\", \"sc_amount\": 0.00, \"sc_name_long\": \"Print at Home\", \"sc_id\": 70881, \"sc_name\": \"TFAST\" }, { \"type\": \"S\", \"sc_amount\": 6.60, \"sc_name_long\": \"ZZZ ABG SFEE 10% Increase\", \"sc_id\": 72556, \"sc_name\": \"EXABG60\" }, { \"type\": \"S\", \"sc_amount\": 5.50, \"sc_name_long\": \"ZZZ Fantasy SFEE 10% Increase\", \"sc_id\": 72558, \"sc_name\": \"FTSFEE50\" }, { \"type\": \"S\", \"sc_amount\": 9.85, \"sc_name_long\": \"ZZZ B II Men $9.85 Service Fee\", \"sc_id\": 72567, \"sc_name\": \"BZ985\" }, { \"type\": \"S\", \"sc_amount\": 5.50, \"sc_name_long\": \"House of Blues MGM Fee $5.50\", \"sc_id\": 72984, \"sc_name\": \"MGMHOB2\" }, { \"type\": \"S\", \"sc_amount\": 5.50, \"sc_name_long\": \"ZZZ Excalibur TOK 10% Increase\", \"sc_id\": 73395, \"sc_name\": \"EXTOK10\" }, { \"type\": \"S\", \"sc_amount\": 10.00, \"sc_name_long\": \"ZZZ Contact Center MEP Phone\", \"sc_id\": 85762, \"sc_name\": \"CCMEP\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"ZZZ Online Will Call\", \"sc_id\": 87515, \"sc_name\": \"INETWC\" }, { \"type\": \"S\", \"sc_amount\": 10.95, \"sc_name_long\": \"ZZZ MJ ONE $10.95 MMJ\", \"sc_id\": 90298, \"sc_name\": \"MJ1095\" }, { \"type\": \"S\", \"sc_amount\": 10.95, \"sc_name_long\": \"ZZZ Believe $10.95 LXB\", \"sc_id\": 90299, \"sc_name\": \"BE1095\" }, { \"type\": \"S\", \"sc_amount\": 10.95, \"sc_name_long\": \"ZZZ Zumanity $10.95 AEA\", \"sc_id\": 90300, \"sc_name\": \"ZU1095\" }, { \"type\": \"S\", \"sc_amount\": 10.95, \"sc_name_long\": \"ZZZ Zarkana $10.95 CLZ\", \"sc_id\": 90301, \"sc_name\": \"ZA1095\" }, { \"type\": \"S\", \"sc_amount\": 10.95, \"sc_name_long\": \"ZZZ O $10.95 COG\", \"sc_id\": 90302, \"sc_name\": \"OT1095\" }, { \"type\": \"S\", \"sc_amount\": 10.95, \"sc_name_long\": \"ZZZ LV $10.95 CHM\", \"sc_id\": 90303, \"sc_name\": \"LV1095\" }, { \"type\": \"S\", \"sc_amount\": 10.95, \"sc_name_long\": \"ZZZ KA $10.95 PHK\", \"sc_id\": 90304, \"sc_name\": \"KA1095\" }, { \"type\": \"S\", \"sc_amount\": 5.50, \"sc_name_long\": \"ZZZ Carrot Top $5.50 LAC\", \"sc_id\": 90305, \"sc_name\": \"CT550\" }, { \"type\": \"S\", \"sc_amount\": 9.85, \"sc_name_long\": \"ZZZ Jabbawockeez $9.85 LXJ\", \"sc_id\": 90308, \"sc_name\": \"JA985\" }, { \"type\": \"S\", \"sc_amount\": 6.50, \"sc_name_long\": \"ZZZ Blueman $6.50 CCF\", \"sc_id\": 90309, \"sc_name\": \"BMMRI650\" }, { \"type\": \"S\", \"sc_amount\": 3.50, \"sc_name_long\": \"ZZZ Blueman $3.50 CCF\", \"sc_id\": 90310, \"sc_name\": \"BMG350\" }, { \"type\": \"S\", \"sc_amount\": 9.85, \"sc_name_long\": \"ZZZ BZ $9.85 CHL\", \"sc_id\": 90311, \"sc_name\": \"BZ0985\" }, { \"type\": \"S\", \"sc_amount\": 3.50, \"sc_name_long\": \"ZZZ CSI $3.50 PHC\", \"sc_id\": 90313, \"sc_name\": \"CSI350\" }, { \"type\": \"S\", \"sc_amount\": 9.23, \"sc_name_long\": \"ZZZDavid Copperfield $9.23 PHD\", \"sc_id\": 90314, \"sc_name\": \"HTDC923\" }, { \"type\": \"S\", \"sc_amount\": 3.50, \"sc_name_long\": \"ZZZ Brad Garretts $3.50 PHB\", \"sc_id\": 90315, \"sc_name\": \"BG350\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"ZZZZLX ATTRACTIONS $3.00 LAT\", \"sc_id\": 90316, \"sc_name\": \"LXAT300\" }, { \"type\": \"S\", \"sc_amount\": 6.60, \"sc_name_long\": \"ZZZ EX ABG New Ledger Code\", \"sc_id\": 90331, \"sc_name\": \"EXABGNEW\" }, { \"type\": \"S\", \"sc_amount\": 2.00, \"sc_name_long\": \"ZZZ EX ABG New Ledger Code $2\", \"sc_id\": 90333, \"sc_name\": \"EXABGNW2\" }, { \"type\": \"S\", \"sc_amount\": 5.50, \"sc_name_long\": \"ZZZ EX TOK New Ledger Code\", \"sc_id\": 90335, \"sc_name\": \"EXTOKNEW\" }, { \"type\": \"S\", \"sc_amount\": 15.00, \"sc_name_long\": \"ZZZ Bellagio Lily CC SF $15\", \"sc_id\": 106115, \"sc_name\": \"CCTLIL15\" }, { \"type\": \"S\", \"sc_amount\": 15.00, \"sc_name_long\": \"ZZZ Center LEP Phone $15\", \"sc_id\": 107273, \"sc_name\": \"CCMEP15\" }, { \"type\": \"O\", \"sc_amount\": 7.00, \"sc_name_long\": \"Online Will Call $7.00\", \"sc_id\": 107850, \"sc_name\": \"INETWCF\" }, { \"type\": \"S\", \"sc_amount\": 4.50, \"sc_name_long\": \"ZZZ Blue Man Group Luxor $4.50\", \"sc_id\": 107852, \"sc_name\": \"BMGLX450\" }, { \"type\": \"S\", \"sc_amount\": 6.50, \"sc_name_long\": \"ZZZ Blue Man Group Luxor $6.50\", \"sc_id\": 107853, \"sc_name\": \"BMGLX650\" }, { \"type\": \"S\", \"sc_amount\": 13.95, \"sc_name_long\": \"ZZZ MJ ONE $13.95\", \"sc_id\": 107873, \"sc_name\": \"MJ1395\" }, { \"type\": \"S\", \"sc_amount\": 13.95, \"sc_name_long\": \"ZZZ O $13.95 COG\", \"sc_id\": 107879, \"sc_name\": \"OT1395\" }, { \"type\": \"S\", \"sc_amount\": 12.95, \"sc_name_long\": \"ZZZ Zumanity $12.95 AEA\", \"sc_id\": 107881, \"sc_name\": \"ZU1295\" }, { \"type\": \"S\", \"sc_amount\": 12.95, \"sc_name_long\": \"ZZZ LV $12.95 CHM\", \"sc_id\": 107945, \"sc_name\": \"LV1295\" }, { \"type\": \"S\", \"sc_amount\": 12.95, \"sc_name_long\": \"ZZZ KA $12.95 PHK\", \"sc_id\": 107946, \"sc_name\": \"KA1295\" }, { \"type\": \"S\", \"sc_amount\": 7.50, \"sc_name_long\": \"ZZZ EXC TFDU $7.50\", \"sc_id\": 108760, \"sc_name\": \"EXTDU750\" }, { \"type\": \"S\", \"sc_amount\": 10.95, \"sc_name_long\": \"ZZZ Terry Fator $10.95\", \"sc_id\": 108765, \"sc_name\": \"TF1095\" }, { \"type\": \"S\", \"sc_amount\": 8.95, \"sc_name_long\": \"ZZZ Jabba at MGM $8.95 CGW\", \"sc_id\": 108864, \"sc_name\": \"JA895\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ EX TOK $7.00\", \"sc_id\": 108868, \"sc_name\": \"EXTOK700\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ Carrot Top $6.00\", \"sc_id\": 108873, \"sc_name\": \"CT600\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ Fantasy $6.00\", \"sc_id\": 108874, \"sc_name\": \"FT600\" }, { \"type\": \"S\", \"sc_amount\": 10.95, \"sc_name_long\": \"ZZZ Mirage Boyz II Men $10.95\", \"sc_id\": 108876, \"sc_name\": \"BZ1095\" }, { \"type\": \"S\", \"sc_amount\": 6.50, \"sc_name_long\": \"ZZZ EX TOK $6.50\", \"sc_id\": 108890, \"sc_name\": \"EXTOK650\" }, { \"type\": \"S\", \"sc_amount\": 8.00, \"sc_name_long\": \"ZZZ NYNY NYE $8.00 Service Fee\", \"sc_id\": 109199, \"sc_name\": \"NYNYE800\" }, { \"type\": \"S\", \"sc_amount\": 5.00, \"sc_name_long\": \"Contact Center myVEGAS $5\", \"sc_id\": 115001, \"sc_name\": \"CCMV5\" }, { \"type\": \"S\", \"sc_amount\": 15.00, \"sc_name_long\": \"Contact Center myVEGAS $15\", \"sc_id\": 115002, \"sc_name\": \"CCMV15\" }, { \"type\": \"S\", \"sc_amount\": 10.95, \"sc_name_long\": \"ZZZ Gabriel Iglesias 4W $10.95\", \"sc_id\": 115323, \"sc_name\": \"MHGI1095\" }, { \"type\": \"O\", \"sc_amount\": 0.00, \"sc_name_long\": \"Mail\", \"sc_id\": 121131, \"sc_name\": \"MAIL\" }, { \"type\": \"S\", \"sc_amount\": 2.00, \"sc_name_long\": \"ZZZ MBCH 50% OFFER SERVICE F33\", \"sc_id\": 124674, \"sc_name\": \"MBH 50%\" }, { \"type\": \"S\", \"sc_amount\": 5.50, \"sc_name_long\": \"ZZZ HOB MGM Service Fee $5.50\", \"sc_id\": 128982, \"sc_name\": \"HOBMGM55\" }, { \"type\": \"S\", \"sc_amount\": 14.95, \"sc_name_long\": \"ZZZ O $14.95 COG\", \"sc_id\": 147609, \"sc_name\": \"OT1495\" }, { \"type\": \"S\", \"sc_amount\": 14.95, \"sc_name_long\": \"ZZZ MJ ONE $14.95 MMJ\", \"sc_id\": 147610, \"sc_name\": \"MJ1495\" }, { \"type\": \"S\", \"sc_amount\": 13.95, \"sc_name_long\": \"ZZZ LV $13.95 CHM\", \"sc_id\": 147611, \"sc_name\": \"LV1395\" }, { \"type\": \"S\", \"sc_amount\": 13.95, \"sc_name_long\": \"ZZZ KA $13.95 PHK\", \"sc_id\": 147612, \"sc_name\": \"KA1395\" }, { \"type\": \"S\", \"sc_amount\": 13.95, \"sc_name_long\": \"ZZCriss Angel Mindfreak $13.95\", \"sc_id\": 147615, \"sc_name\": \"CA1395\" }, { \"type\": \"S\", \"sc_amount\": 13.95, \"sc_name_long\": \"ZZZ Zumanity $13.95 AEA\", \"sc_id\": 147630, \"sc_name\": \"ZU1395\" }, { \"type\": \"S\", \"sc_amount\": 10.00, \"sc_name_long\": \"ZZZ CvC CC MC Dia $10\", \"sc_id\": 148079, \"sc_name\": \"CVC17MCD\" }, { \"type\": \"O\", \"sc_amount\": 2.00, \"sc_name_long\": \"ZZZ 3 for $57 $2.00 Fee\", \"sc_id\": 148531, \"sc_name\": \"34572\" }, { \"type\": \"S\", \"sc_amount\": 10.00, \"sc_name_long\": \"ZZZ CC MB Foundation Room $10\", \"sc_id\": 148540, \"sc_name\": \"CVC17MBF\" }, { \"type\": \"S\", \"sc_amount\": 11.99, \"sc_name_long\": \"ZZZ Mirage Headl $11.99 CHS\", \"sc_id\": 148605, \"sc_name\": \"MH1199\" }, { \"type\": \"S\", \"sc_amount\": 11.99, \"sc_name_long\": \"ZZZ Mirage BIIM $11.99 CHL\", \"sc_id\": 148606, \"sc_name\": \"BZ1199\" }, { \"type\": \"S\", \"sc_amount\": 11.99, \"sc_name_long\": \"ZZZ Terry Fator $11.99 CHT\", \"sc_id\": 148607, \"sc_name\": \"TF1199\" }, { \"type\": \"S\", \"sc_amount\": 11.25, \"sc_name_long\": \"ZZZ David Copperfield $11.25\", \"sc_id\": 148608, \"sc_name\": \"DC1125\" }, { \"type\": \"S\", \"sc_amount\": 5.00, \"sc_name_long\": \"ZZZ Gateway\", \"sc_id\": 148667, \"sc_name\": \"GATEWAY\" }, { \"type\": \"S\", \"sc_amount\": 10.00, \"sc_name_long\": \"ZZZ CvC $10 Lily @ Bellagio\", \"sc_id\": 148670, \"sc_name\": \"CVC17BEL\" }, { \"type\": \"S\", \"sc_amount\": 10.00, \"sc_name_long\": \"ZZZ Gateway Test\", \"sc_id\": 148671, \"sc_name\": \"GATEWAY2\" }, { \"type\": \"S\", \"sc_amount\": 15.00, \"sc_name_long\": \"ZZZ MGM Marquee CC SF $15\", \"sc_id\": 150552, \"sc_name\": \"CCTMQ15\" }, { \"type\": \"S\", \"sc_amount\": 15.00, \"sc_name_long\": \"ZZZ Mirage EC A/B CC SF $15\", \"sc_id\": 150557, \"sc_name\": \"CCTMRA15\" }, { \"type\": \"S\", \"sc_amount\": 15.00, \"sc_name_long\": \"ZZZ CC Garden Grill CC SF $15\", \"sc_id\": 150798, \"sc_name\": \"CCTGG15\" }, { \"type\": \"S\", \"sc_amount\": 15.00, \"sc_name_long\": \"ZZZ Bellagio Hyde CC SF $15\", \"sc_id\": 151563, \"sc_name\": \"CCTBHY15\" }, { \"type\": \"S\", \"sc_amount\": 15.00, \"sc_name_long\": \"ZZZ MB Light CC SF $15\", \"sc_id\": 151572, \"sc_name\": \"CCTMBL15\" }, { \"type\": \"S\", \"sc_amount\": 15.00, \"sc_name_long\": \"ZZZ MB MJ Theatre CC SF $15\", \"sc_id\": 151643, \"sc_name\": \"CCTMJ15\" }, { \"type\": \"S\", \"sc_amount\": 15.00, \"sc_name_long\": \"ZZZ Luxor CA Theater CC SF $15\", \"sc_id\": 151695, \"sc_name\": \"CCTCAT15\" }, { \"type\": \"S\", \"sc_amount\": 15.00, \"sc_name_long\": \"ZZZ MB RiRa CC SF $15\", \"sc_id\": 151786, \"sc_name\": \"CCTMBR15\" }, { \"type\": \"S\", \"sc_amount\": 15.00, \"sc_name_long\": \"ZZZ Aria Alibi CC SF $15\", \"sc_id\": 151921, \"sc_name\": \"CCTAAL15\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ O $6.00 COG TOD FEE\", \"sc_id\": 151923, \"sc_name\": \"TODOT\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ LV $6.00 CHM TOD FEE\", \"sc_id\": 151924, \"sc_name\": \"TODLV\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ KA $6.00 PHK TOD FEE\", \"sc_id\": 151925, \"sc_name\": \"TODKA\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ ZU $6.00 AEA TOD FEE\", \"sc_id\": 151926, \"sc_name\": \"TODZU\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ CA $6.00 LXB TOD FEE\", \"sc_id\": 151927, \"sc_name\": \"TODCA\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ MJ $6.00 MMJ TOD FEE\", \"sc_id\": 151928, \"sc_name\": \"TODMJ\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ BZ $6.00 CHL TOD FEE\", \"sc_id\": 151929, \"sc_name\": \"TODBZ\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ CT $6.00 LAC TOD FEE\", \"sc_id\": 151930, \"sc_name\": \"TODCT\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ DC $6.00 PHD TOD FEE\", \"sc_id\": 151931, \"sc_name\": \"TODDC\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ FT $6.00 LFT TOD FEE\", \"sc_id\": 151932, \"sc_name\": \"TODFT\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ JB $6.00 CGW TOD FEE\", \"sc_id\": 151933, \"sc_name\": \"TODJB\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ BMG $6.00 LBS TOD FEE\", \"sc_id\": 151934, \"sc_name\": \"TODBMG\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ BG $6.00 PHB TOD FEE\", \"sc_id\": 151935, \"sc_name\": \"TODBG\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ TF $6.00 CHT TOD FEE\", \"sc_id\": 151936, \"sc_name\": \"TODTF\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ TFDU $6.00 CDH TOD FEE\", \"sc_id\": 151937, \"sc_name\": \"TODTFDU\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ ABG $6.00 CDD TOD FEE\", \"sc_id\": 151938, \"sc_name\": \"TODABG\" }, { \"type\": \"S\", \"sc_amount\": 15.00, \"sc_name_long\": \"ZZMB Foundation Room CC SF $15\", \"sc_id\": 151941, \"sc_name\": \"CCTMFR15\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ TOD TOK $6.00\", \"sc_id\": 153488, \"sc_name\": \"TODTOK\" }, { \"type\": \"S\", \"sc_amount\": 10.95, \"sc_name_long\": \"ZZZ Rodney Carrington $10.95\", \"sc_id\": 153489, \"sc_name\": \"MGMR1095\" }, { \"type\": \"S\", \"sc_amount\": 11.99, \"sc_name_long\": \"ZZZMIR 1OAK Srv Fee $11.99 OAK\", \"sc_id\": 154188, \"sc_name\": \"1OAK1199\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"ZZZ MGM VR $3.00 Service Fee\", \"sc_id\": 154621, \"sc_name\": \"MGMVR\" }, { \"type\": \"S\", \"sc_amount\": 2.00, \"sc_name_long\": \"TOD Mirage Buffet $2\", \"sc_id\": 155730, \"sc_name\": \"TODMIRBU\" }, { \"type\": \"S\", \"sc_amount\": 2.00, \"sc_name_long\": \"TOD Luxor Buffet $2\", \"sc_id\": 155731, \"sc_name\": \"TODLUXBU\" }, { \"type\": \"S\", \"sc_amount\": 2.00, \"sc_name_long\": \"TOD Excalibur Buffet $2\", \"sc_id\": 155732, \"sc_name\": \"TODEXCBU\" }, { \"type\": \"S\", \"sc_amount\": 15.95, \"sc_name_long\": \"ZZZ O $15.95 COG\", \"sc_id\": 156916, \"sc_name\": \"OT1595\" }, { \"type\": \"S\", \"sc_amount\": 15.95, \"sc_name_long\": \"ZZZ MJ ONE $15.95 MMJ\", \"sc_id\": 157096, \"sc_name\": \"MJ1595\" }, { \"type\": \"S\", \"sc_amount\": 14.95, \"sc_name_long\": \"ZZZ LV $14.95 CHM\", \"sc_id\": 157097, \"sc_name\": \"LV1495\" }, { \"type\": \"S\", \"sc_amount\": 14.95, \"sc_name_long\": \"ZZZ KA $14.95 PHK\", \"sc_id\": 157098, \"sc_name\": \"KA1495\" }, { \"type\": \"S\", \"sc_amount\": 14.95, \"sc_name_long\": \"ZZZ Zumanity $14.95 AEA\", \"sc_id\": 157099, \"sc_name\": \"ZU1495\" }, { \"type\": \"S\", \"sc_amount\": 14.95, \"sc_name_long\": \"ZZZ Criss Angel MFL $14.95 LXB\", \"sc_id\": 157100, \"sc_name\": \"CA1495\" }, { \"type\": \"S\", \"sc_amount\": 2.00, \"sc_name_long\": \"TOD $2 MB Buffet\", \"sc_id\": 159061, \"sc_name\": \"TODMBBUF\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ Mystere $6.00 TOD FEE\", \"sc_id\": 160936, \"sc_name\": \"TODMY\" }, { \"type\": \"O\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ Tickets on Demand ACES\", \"sc_id\": 164417, \"sc_name\": \"TODACES\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ TOD Park Theater\", \"sc_id\": 164989, \"sc_name\": \"TODPT\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZZ VR $6.00 CGG TOD FEE\", \"sc_id\": 165646, \"sc_name\": \"TODVR\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZMatt Goss 1OAK $6.00 TOD FEE\", \"sc_id\": 166606, \"sc_name\": \"TODMG\" }, { \"type\": \"S\", \"sc_amount\": 1.50, \"sc_name_long\": \"ZZZ MRAP $1.50\", \"sc_id\": 166704, \"sc_name\": \"RP150\" }, { \"type\": \"S\", \"sc_amount\": 6.00, \"sc_name_long\": \"ZZ TOD KA Theatre Headli $6.00\", \"sc_id\": 170242, \"sc_name\": \"TODKATH\" }, { \"type\": \"S\", \"sc_amount\": 7.75, \"sc_name_long\": \"ZZZ EX TOK $7.75\", \"sc_id\": 170288, \"sc_name\": \"EXTOK775\" }, { \"type\": \"S\", \"sc_amount\": 4.98, \"sc_name_long\": \"ZZZ LV VIP $4.98 CHM\", \"sc_id\": 171951, \"sc_name\": \"LVVIP498\" }, { \"type\": \"O\", \"sc_amount\": 0.00, \"sc_name_long\": \"ICE M life Will Call $0\", \"sc_id\": 171954, \"sc_name\": \"INETMLIF\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ MBCH SF Dirty Heads\", \"sc_id\": 171970, \"sc_name\": \"MBS80629\" }, { \"type\": \"S\", \"sc_amount\": 4.98, \"sc_name_long\": \"ZZZ KA $4.98 PHK\", \"sc_id\": 171971, \"sc_name\": \"KAVIP498\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ MBCH SF Bash at the Beach\", \"sc_id\": 171978, \"sc_name\": \"MBS80413\" }, { \"type\": \"S\", \"sc_amount\": 17.95, \"sc_name_long\": \"ZZZ O $17.95 COG\", \"sc_id\": 171992, \"sc_name\": \"OT1795\" }, { \"type\": \"S\", \"sc_amount\": 5.98, \"sc_name_long\": \"ZZZ OT VIP $5.98 COG\", \"sc_id\": 171993, \"sc_name\": \"OTVIP598\" }, { \"type\": \"S\", \"sc_amount\": 17.95, \"sc_name_long\": \"ZZZ MJ ONE $17.95 MMJ\", \"sc_id\": 171994, \"sc_name\": \"MJ1795\" }, { \"type\": \"S\", \"sc_amount\": 16.95, \"sc_name_long\": \"ZZZ LV $16.95 CHM\", \"sc_id\": 171995, \"sc_name\": \"LV1695\" }, { \"type\": \"S\", \"sc_amount\": 5.65, \"sc_name_long\": \"ZZZ LV VIP $5.65 CHM\", \"sc_id\": 171996, \"sc_name\": \"LVVIP565\" }, { \"type\": \"S\", \"sc_amount\": 16.95, \"sc_name_long\": \"ZZZ KA $16.95 PHK\", \"sc_id\": 171997, \"sc_name\": \"KA1695\" }, { \"type\": \"S\", \"sc_amount\": 5.65, \"sc_name_long\": \"ZZZ KA VIP $5.65 PHK\", \"sc_id\": 171998, \"sc_name\": \"KAVIP565\" }, { \"type\": \"S\", \"sc_amount\": 16.95, \"sc_name_long\": \"ZZZ Zumanity $16.95 AEA\", \"sc_id\": 171999, \"sc_name\": \"ZU1695\" }, { \"type\": \"S\", \"sc_amount\": 16.95, \"sc_name_long\": \"ZZZ Criss Angel MFL $16.95 LXB\", \"sc_id\": 172000, \"sc_name\": \"CA1695\" }, { \"type\": \"S\", \"sc_amount\": 9.72, \"sc_name_long\": \"ZZZ Blue Man Group $9.72 LBS\", \"sc_id\": 172011, \"sc_name\": \"BL972\" }, { \"type\": \"S\", \"sc_amount\": 5.23, \"sc_name_long\": \"ZZZ Blue Man Group $5.23 LBS\", \"sc_id\": 172012, \"sc_name\": \"BL523\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"TOD Luxor $3\", \"sc_id\": 172048, \"sc_name\": \"TODLX3\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ MBCH SF J Balvin\", \"sc_id\": 172056, \"sc_name\": \"MBS80527\" }, { \"type\": \"S\", \"sc_amount\": 16.95, \"sc_name_long\": \"ZZZ Mystere $16.95 SF TOD FEE\", \"sc_id\": 172060, \"sc_name\": \"MYST1695\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ MBCH SF LBB Showcase\", \"sc_id\": 173047, \"sc_name\": \"MBS80424\" }, { \"type\": \"O\", \"sc_amount\": 25.00, \"sc_name_long\": \"Online Will Call $25.00\", \"sc_id\": 173083, \"sc_name\": \"PTWCF\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ MBCH SF Retro Futura\", \"sc_id\": 173385, \"sc_name\": \"MBS80721\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ MBCH SF Kane Brown\", \"sc_id\": 173414, \"sc_name\": \"MBS80722\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"ZZZ ZU $3.00 AEA TOD FEE\", \"sc_id\": 173436, \"sc_name\": \"TODZU300\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ MBCH SF Los Angeles Azules\", \"sc_id\": 173454, \"sc_name\": \"MBS80921\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ MBCH SF Mystic Roots\", \"sc_id\": 173455, \"sc_name\": \"MBS80704\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ MBCH SF Brett Young\", \"sc_id\": 174047, \"sc_name\": \"MBS80817\" }, { \"type\": \"S\", \"sc_amount\": 9.00, \"sc_name_long\": \"ZZZBellagio World Beauty $9.00\", \"sc_id\": 174148, \"sc_name\": \"BELSE900\" }, { \"type\": \"S\", \"sc_amount\": 10.95, \"sc_name_long\": \"ZZZ MGM Patton Oswalt $10.95\", \"sc_id\": 174600, \"sc_name\": \"MGMP1095\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"KA $3.00 TOD FEE\", \"sc_id\": 174601, \"sc_name\": \"TODKA300\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"LV $3.00 TOD FEE\", \"sc_id\": 174603, \"sc_name\": \"TODLV300\" }, { \"type\": \"S\", \"sc_amount\": 3.87, \"sc_name_long\": \"ZZZ TOK 4D Flex plan\", \"sc_id\": 174680, \"sc_name\": \"TOK4D387\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ MBCH SF Lee Brice\", \"sc_id\": 174687, \"sc_name\": \"MBS80928\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ MBCH SF Sublime with Rome\", \"sc_id\": 174688, \"sc_name\": \"MBS80929\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ MBCH SF The Original Waile\", \"sc_id\": 174689, \"sc_name\": \"MBS80908\" }, { \"type\": \"S\", \"sc_amount\": 6.88, \"sc_name_long\": \"EX ABG Groupon $6.88\", \"sc_id\": 174752, \"sc_name\": \"EXABGGRP\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"ZZZ NYNY CC $3.00\", \"sc_id\": 174754, \"sc_name\": \"NYNCC300\" }, { \"type\": \"S\", \"sc_amount\": 18.95, \"sc_name_long\": \"ZZZ O $18.95 COG\", \"sc_id\": 174890, \"sc_name\": \"OT1895\" }, { \"type\": \"S\", \"sc_amount\": 6.31, \"sc_name_long\": \"ZZZ OT VIP $6.31 COG\", \"sc_id\": 174891, \"sc_name\": \"OTVIP631\" }, { \"type\": \"S\", \"sc_amount\": 18.95, \"sc_name_long\": \"ZZZ MJ ONE $18.95 MMJ\", \"sc_id\": 174892, \"sc_name\": \"MJ1895\" }, { \"type\": \"S\", \"sc_amount\": 17.95, \"sc_name_long\": \"ZZZ LV $17.95 CHM\", \"sc_id\": 174893, \"sc_name\": \"LV1795\" }, { \"type\": \"S\", \"sc_amount\": 5.98, \"sc_name_long\": \"ZZZ LV VIP $5.98 CHM\", \"sc_id\": 174894, \"sc_name\": \"LVVIP598\" }, { \"type\": \"S\", \"sc_amount\": 17.95, \"sc_name_long\": \"ZZZ KA $17.95 PHK\", \"sc_id\": 174895, \"sc_name\": \"KA1795\" }, { \"type\": \"S\", \"sc_amount\": 5.98, \"sc_name_long\": \"ZZZ KA VIP $5.98 PHK\", \"sc_id\": 174898, \"sc_name\": \"KAVIP598\" }, { \"type\": \"S\", \"sc_amount\": 17.95, \"sc_name_long\": \"ZZZ Zumanity $17.95 AEA\", \"sc_id\": 175367, \"sc_name\": \"ZU1795\" }, { \"type\": \"S\", \"sc_amount\": 17.95, \"sc_name_long\": \"ZZZ Criss Angel MFL $17.95 LXB\", \"sc_id\": 175368, \"sc_name\": \"CA1795\" }, { \"type\": \"S\", \"sc_amount\": 8.60, \"sc_name_long\": \"ZZZ EX ABG $8.60\", \"sc_id\": 175388, \"sc_name\": \"EXABG860\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ MBCH SF Atmosphere & J Boo\", \"sc_id\": 175943, \"sc_name\": \"MBS80824\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"ZZZ ESPORTS Arena Svc Fee $3\", \"sc_id\": 176421, \"sc_name\": \"EAS3FEE\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ MBCH SF Nacho\", \"sc_id\": 176423, \"sc_name\": \"MBS80818\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"TOD Secret Garden $3\", \"sc_id\": 180225, \"sc_name\": \"TODSG300\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"TOD Shark Reef $3\", \"sc_id\": 180226, \"sc_name\": \"TODSR300\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"TOD Bodies $3 ZQA\", \"sc_id\": 180227, \"sc_name\": \"TODBO300\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"TOD Titanic $3\", \"sc_id\": 180228, \"sc_name\": \"TODTI300\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"TOD BGFA $3\", \"sc_id\": 180229, \"sc_name\": \"TODFA300\" }, { \"type\": \"S\", \"sc_amount\": 2.00, \"sc_name_long\": \"ZZZ MB EVO 2018\", \"sc_id\": 180299, \"sc_name\": \"MBEVO\" }, { \"type\": \"S\", \"sc_amount\": 15.00, \"sc_name_long\": \"ZZZ MB Dine Under the Stars\", \"sc_id\": 180691, \"sc_name\": \"MBSKY15\" }, { \"type\": \"S\", \"sc_amount\": 7.50, \"sc_name_long\": \"ZZZ MB Family Affair\", \"sc_id\": 180692, \"sc_name\": \"MBSTR750\" }, { \"type\": \"S\", \"sc_amount\": 8.75, \"sc_name_long\": \"ZZZ EX TOK $8.75\", \"sc_id\": 180758, \"sc_name\": \"EXTOK875\" }, { \"type\": \"S\", \"sc_amount\": 6.50, \"sc_name_long\": \"ZZZ Secrets of a Chef\", \"sc_id\": 180759, \"sc_name\": \"MBFLE650\" }, { \"type\": \"S\", \"sc_amount\": 9.50, \"sc_name_long\": \"ZZZ Wine the Day Away\", \"sc_id\": 180760, \"sc_name\": \"MBAUR950\" }, { \"type\": \"S\", \"sc_amount\": 5.00, \"sc_name_long\": \"ZZZ Oktoberfest at Libertine\", \"sc_id\": 180761, \"sc_name\": \"MBLIB500\" }, { \"type\": \"S\", \"sc_amount\": 11.99, \"sc_name_long\": \"ZZZ Aces of Comedy $11.99 CHS\", \"sc_id\": 180897, \"sc_name\": \"PMJ1199\" }, { \"type\": \"S\", \"sc_amount\": 5.50, \"sc_name_long\": \"ZZZ No Kid Hungry $5.50\", \"sc_id\": 180903, \"sc_name\": \"MBNKH550\" }, { \"type\": \"S\", \"sc_amount\": 9.50, \"sc_name_long\": \"ZZZ MB Toast the Trees $9.50\", \"sc_id\": 180905, \"sc_name\": \"MBTTT950\" }, { \"type\": \"S\", \"sc_amount\": 5.50, \"sc_name_long\": \"ZZZ ZT Sp Guests $5.50\", \"sc_id\": 180909, \"sc_name\": \"NYNY550\" }, { \"type\": \"S\", \"sc_amount\": 15.00, \"sc_name_long\": \"ZZZ NYNY Coyote Ugly CC SF $15\", \"sc_id\": 180911, \"sc_name\": \"CCTNYC15\" }, { \"type\": \"S\", \"sc_amount\": 15.00, \"sc_name_long\": \"ZZZ Mirage The Still CC SF $15\", \"sc_id\": 180914, \"sc_name\": \"CCTMRS15\" }, { \"type\": \"S\", \"sc_amount\": 5.00, \"sc_name_long\": \"ZZZ NYNY CC $5.00\", \"sc_id\": 180918, \"sc_name\": \"NYNCC500\" }, { \"type\": \"S\", \"sc_amount\": 17.95, \"sc_name_long\": \"ZZZ Mystere $17.95 SF TOD FEE\", \"sc_id\": 180920, \"sc_name\": \"MYST1795\" }, { \"type\": \"S\", \"sc_amount\": 15.00, \"sc_name_long\": \"ZZZ PRK Money Line CC SF $15\", \"sc_id\": 180923, \"sc_name\": \"CCTPMY15\" }, { \"type\": \"S\", \"sc_amount\": 5.50, \"sc_name_long\": \"ZZZ NYNY Elysian GP $5.50\", \"sc_id\": 180926, \"sc_name\": \"NYNSF550\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"TOD 4D $3 CDE\", \"sc_id\": 183731, \"sc_name\": \"TOD4D300\" }, { \"type\": \"S\", \"sc_amount\": 5.00, \"sc_name_long\": \"ZZZ ARIA CC Service Fee $5.00\", \"sc_id\": 186249, \"sc_name\": \"AR500\" }, { \"type\": \"S\", \"sc_amount\": 5.00, \"sc_name_long\": \"ZZZExcalibur Service Fee $5.00\", \"sc_id\": 186254, \"sc_name\": \"EX500\" }, { \"type\": \"S\", \"sc_amount\": 13.50, \"sc_name_long\": \"ZZZPRK Money Line CC SF $13.50\", \"sc_id\": 186430, \"sc_name\": \"CCTPMY13\" }, { \"type\": \"S\", \"sc_amount\": 7.50, \"sc_name_long\": \"ZZZExcalibur Service Fee $7.50\", \"sc_id\": 186438, \"sc_name\": \"EX750\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ABG $7.00 ZQA TOD FEE\", \"sc_id\": 186456, \"sc_name\": \"TODABG7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"TOD ACES $7.00 ZQA\", \"sc_id\": 186457, \"sc_name\": \"TODACES7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"BG $7.00 ZQA TOD FEE\", \"sc_id\": 186458, \"sc_name\": \"TODBG7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"BMG $7.00 ZQA TOD FEE\", \"sc_id\": 186459, \"sc_name\": \"TODBMG7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"BZ $7.00 TOD FEE\", \"sc_id\": 186460, \"sc_name\": \"TODBZ7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ CA $7.00 LXB TOD FEE\", \"sc_id\": 186461, \"sc_name\": \"TODCA7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"CT $7.00 TOD FEE\", \"sc_id\": 186462, \"sc_name\": \"TODCT7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"DC $7.00 TOD FEE\", \"sc_id\": 186464, \"sc_name\": \"TODDC7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ FT $7.00 TOD FEE\", \"sc_id\": 186465, \"sc_name\": \"TODFT7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"JB $7.00 TOD FEE\", \"sc_id\": 186466, \"sc_name\": \"TODJB7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"KA $7.00 TOD FEE\", \"sc_id\": 186467, \"sc_name\": \"TODKA7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"TOD KA Theatre Headliner $7.00\", \"sc_id\": 186468, \"sc_name\": \"TODKATH7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"LV $7.00 TOD FEE\", \"sc_id\": 186469, \"sc_name\": \"TODLV7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"Matt Goss 1OAK $7.00 TOD FEE\", \"sc_id\": 186470, \"sc_name\": \"TODMG7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"MJ $7.00 TOD FEE\", \"sc_id\": 186471, \"sc_name\": \"TODMJ7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ Mystere $7.00 TOD FEE\", \"sc_id\": 186472, \"sc_name\": \"TODMY7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"O $7.00 TOD FEE\", \"sc_id\": 186473, \"sc_name\": \"TODOT7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"TOD Park Theater $7.00\", \"sc_id\": 186474, \"sc_name\": \"TODPT7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ R. Carrington $7.00TOD\", \"sc_id\": 186475, \"sc_name\": \"TODROD7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"TF $7.00 TOD FEE\", \"sc_id\": 186476, \"sc_name\": \"TODTF7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"TFDU $7.00 TOD FEE\", \"sc_id\": 186477, \"sc_name\": \"TODTFDU7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"TI Headliners $7.00 TOD FEE\", \"sc_id\": 186478, \"sc_name\": \"TODTIH7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"TOD TOK $7.00\", \"sc_id\": 186481, \"sc_name\": \"TODTOK7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"VR $7.00 TOD FEE\", \"sc_id\": 186482, \"sc_name\": \"TODVR7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZU $7.00 TOD FEE\", \"sc_id\": 186483, \"sc_name\": \"TODZU7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ ZT $7.00 CEB TOD FEE\", \"sc_id\": 188351, \"sc_name\": \"TODZT7\" }, { \"type\": \"S\", \"sc_amount\": 2.00, \"sc_name_long\": \"TOD MGM Grand Buffet $2\", \"sc_id\": 190996, \"sc_name\": \"TODMGMBU\" }, { \"type\": \"S\", \"sc_amount\": 9.00, \"sc_name_long\": \"ZZZ ESPORTS Arena Svc Fee $9\", \"sc_id\": 194501, \"sc_name\": \"EAS9FEE\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ Park Primrose $7.00 S Fee\", \"sc_id\": 195904, \"sc_name\": \"PPR7\" }, { \"type\": \"S\", \"sc_amount\": 10.00, \"sc_name_long\": \"ZZZ Legacy of the West $10.00\", \"sc_id\": 196043, \"sc_name\": \"MRLW10\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ TOD $7.00 CHS\", \"sc_id\": 196044, \"sc_name\": \"TODPMJ7\" }, { \"type\": \"S\", \"sc_amount\": 14.00, \"sc_name_long\": \"ZZZ EXC Fuerza Bruta $14.00\", \"sc_id\": 197575, \"sc_name\": \"EXFB1400\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZ TOD EXC Fuerza Bruta $7.00\", \"sc_id\": 197890, \"sc_name\": \"TODEXFB7\" }, { \"type\": \"S\", \"sc_amount\": 19.50, \"sc_name_long\": \"ZZZ MB Skyfall NYE 2019\", \"sc_id\": 197925, \"sc_name\": \"MBNY1950\" }, { \"type\": \"S\", \"sc_amount\": 25.00, \"sc_name_long\": \"ZZZ MB Skyfall NYE 2019\", \"sc_id\": 197926, \"sc_name\": \"MBNY25\" }, { \"type\": \"S\", \"sc_amount\": 12.95, \"sc_name_long\": \"ZZZ Mirage Rhumbar NYE $12.95\", \"sc_id\": 198727, \"sc_name\": \"MRRHNY19\" }, { \"type\": \"S\", \"sc_amount\": 10.85, \"sc_name_long\": \"ZZZ Naked Magicians $10.85 SF\", \"sc_id\": 198802, \"sc_name\": \"NM1085\" }, { \"type\": \"S\", \"sc_amount\": 10.28, \"sc_name_long\": \"ZZZ MBCH Cole Swindell 2019\", \"sc_id\": 202474, \"sc_name\": \"MBS90427\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ Park NoMad $7.00 S Fee\", \"sc_id\": 203835, \"sc_name\": \"PNM7\" }, { \"type\": \"S\", \"sc_amount\": 11.99, \"sc_name_long\": \"ZZZ Shin Lim $11.99 Fee\", \"sc_id\": 203839, \"sc_name\": \"SL1199\" }, { \"type\": \"S\", \"sc_amount\": 11.99, \"sc_name_long\": \"ZZZ Mirage Headl 4-Wall $11.99\", \"sc_id\": 203895, \"sc_name\": \"MH11994W\" }, { \"type\": \"S\", \"sc_amount\": 11.99, \"sc_name_long\": \"ZZZ Postmodern 4W 1OAK $11.99\", \"sc_id\": 204221, \"sc_name\": \"MPMJ1199\" }, { \"type\": \"S\", \"sc_amount\": 9.80, \"sc_name_long\": \"ZZZMBCH Sublime with Rome 2019\", \"sc_id\": 204222, \"sc_name\": \"MBS90614\" }, { \"type\": \"S\", \"sc_amount\": 8.00, \"sc_name_long\": \"ZZZ Nine Fine Irishman $8.00\", \"sc_id\": 204240, \"sc_name\": \"NYNF800\" }, { \"type\": \"S\", \"sc_amount\": 8.00, \"sc_name_long\": \"ZZZ Carrot Top $8.00\", \"sc_id\": 204243, \"sc_name\": \"CT800\" }, { \"type\": \"S\", \"sc_amount\": 8.01, \"sc_name_long\": \"ZZZ MBCH IRATION 2019\", \"sc_id\": 204354, \"sc_name\": \"MBS90824\" }, { \"type\": \"S\", \"sc_amount\": 7.96, \"sc_name_long\": \"ZZZ MBCH REBELUTION 2019\", \"sc_id\": 204366, \"sc_name\": \"MBS90830\" }, { \"type\": \"S\", \"sc_amount\": 9.75, \"sc_name_long\": \"ZZZ MBCH ZIGGY MARLEY 2019\", \"sc_id\": 204380, \"sc_name\": \"MBS9615L\" }, { \"type\": \"O\", \"sc_amount\": 25.00, \"sc_name_long\": \"ZZZ Test Order Processing Fee\", \"sc_id\": 204563, \"sc_name\": \"ORDERPRO\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"LV $5 ZMQ\", \"sc_id\": 204566, \"sc_name\": \"LVORDER\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZTOD Naked Magicians $7.00 SF\", \"sc_id\": 204567, \"sc_name\": \"TODNM700\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"MJ ORDER FEE $5 ZBQ\", \"sc_id\": 206115, \"sc_name\": \"MJORDER\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"ZU Order Fee $5 AEA\", \"sc_id\": 206116, \"sc_name\": \"ZUORDER\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"KA Order Fee $5 PHK\", \"sc_id\": 206117, \"sc_name\": \"KAORDER\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"O Order Fee $5 ZLQ\", \"sc_id\": 206118, \"sc_name\": \"OTORDER\" }, { \"type\": \"S\", \"sc_amount\": 8.00, \"sc_name_long\": \"ZZZ The Park $8.00 Service Fee\", \"sc_id\": 206159, \"sc_name\": \"THEPARK8\" }, { \"type\": \"S\", \"sc_amount\": 10.50, \"sc_name_long\": \"ZZZ EXC Fuerza Bruta $10.50\", \"sc_id\": 206766, \"sc_name\": \"EXFB1050\" }, { \"type\": \"S\", \"sc_amount\": 3.50, \"sc_name_long\": \"ZZZ EXC Fuerza Bruta $3.50\", \"sc_id\": 206767, \"sc_name\": \"EXFB350\" }, { \"type\": \"S\", \"sc_amount\": 8.41, \"sc_name_long\": \"ZZZ MBCH Juanes 2019\", \"sc_id\": 207238, \"sc_name\": \"MBS90526\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"TOD CSI $3\", \"sc_id\": 207627, \"sc_name\": \"TODCSI3\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ Park Juniper $7.00 S Fee\", \"sc_id\": 208007, \"sc_name\": \"PJL7\" }, { \"type\": \"S\", \"sc_amount\": 18.95, \"sc_name_long\": \"ZZZ R.U.N $18.95 LXP\", \"sc_id\": 208212, \"sc_name\": \"CR1895\" }, { \"type\": \"S\", \"sc_amount\": 10.00, \"sc_name_long\": \"ZZZ Hunger Games $10.00 Servic\", \"sc_id\": 208521, \"sc_name\": \"HG10SVC\" }, { \"type\": \"S\", \"sc_amount\": 8.60, \"sc_name_long\": \"ZZz EX HANS $8.60\", \"sc_id\": 208530, \"sc_name\": \"EXHAN860\" }, { \"type\": \"S\", \"sc_amount\": 13.99, \"sc_name_long\": \"ZZZ Mirage BIIM $13.99 CHL\", \"sc_id\": 208746, \"sc_name\": \"BZ1399\" }, { \"type\": \"S\", \"sc_amount\": 6.76, \"sc_name_long\": \"ZZZ MBCH Mystic Roots 2019\", \"sc_id\": 208747, \"sc_name\": \"MBS90704\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"TOD Hunger Games $3\", \"sc_id\": 208967, \"sc_name\": \"TODHGE3\" }, { \"type\": \"S\", \"sc_amount\": 10.23, \"sc_name_long\": \"ZZZ MBCH Angeles Azules 2019\", \"sc_id\": 208968, \"sc_name\": \"MBS90920\" }, { \"type\": \"S\", \"sc_amount\": 9.95, \"sc_name_long\": \"ZZZ PRK Money Line CC SF $9.95\", \"sc_id\": 208970, \"sc_name\": \"CCTPMY99\" }, { \"type\": \"S\", \"sc_amount\": 11.99, \"sc_name_long\": \"ZZZAtrium Headliners $11.99 SF\", \"sc_id\": 209011, \"sc_name\": \"LXATRIUM\" }, { \"type\": \"S\", \"sc_amount\": 10.33, \"sc_name_long\": \"ZZZ MBCH Alejandra Guzman\", \"sc_id\": 209032, \"sc_name\": \"MBS90915\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"ZZZ TOD Adventuredome $3\", \"sc_id\": 209798, \"sc_name\": \"TODADV3\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"TOD Park NoMad $7.00\", \"sc_id\": 209828, \"sc_name\": \"TODPNM7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"TOD MB Beach $7.00\", \"sc_id\": 210203, \"sc_name\": \"TODMBCH7\" }, { \"type\": \"S\", \"sc_amount\": 5.23, \"sc_name_long\": \"Blue Man Group $5.23 ZCE\", \"sc_id\": 210220, \"sc_name\": \"BMGSF523\" }, { \"type\": \"S\", \"sc_amount\": 9.72, \"sc_name_long\": \"Blue Man Group $9.72 ZCC\", \"sc_id\": 210221, \"sc_name\": \"BMGSF972\" }, { \"type\": \"S\", \"sc_amount\": 8.46, \"sc_name_long\": \"ZZZ MBCH Cafe Tacvba 2019\", \"sc_id\": 211103, \"sc_name\": \"MBS90913\" }, { \"type\": \"S\", \"sc_amount\": 11.99, \"sc_name_long\": \"ZZZ DC Headliners $11.99 Fee\", \"sc_id\": 211105, \"sc_name\": \"DT1199\" }, { \"type\": \"S\", \"sc_amount\": 19.95, \"sc_name_long\": \"ZZZ O $19.95 COA\", \"sc_id\": 211273, \"sc_name\": \"OT1995\" }, { \"type\": \"S\", \"sc_amount\": 18.95, \"sc_name_long\": \"ZZZ KA $18.95 CGB\", \"sc_id\": 211274, \"sc_name\": \"KA1895\" }, { \"type\": \"S\", \"sc_amount\": 19.95, \"sc_name_long\": \"ZZZ MJ ONE $19.95 MTP\", \"sc_id\": 211316, \"sc_name\": \"MJ1995\" }, { \"type\": \"S\", \"sc_amount\": 6.31, \"sc_name_long\": \"ZZZ KA VIP $6.31CGB\", \"sc_id\": 211317, \"sc_name\": \"KAVIP631\" }, { \"type\": \"S\", \"sc_amount\": 18.95, \"sc_name_long\": \"ZZZ LV $18.95 CHC\", \"sc_id\": 211318, \"sc_name\": \"LV1895\" }, { \"type\": \"S\", \"sc_amount\": 6.65, \"sc_name_long\": \"ZZZ OT VIP $6.65 COA\", \"sc_id\": 211319, \"sc_name\": \"OTVIP665\" }, { \"type\": \"S\", \"sc_amount\": 6.31, \"sc_name_long\": \"ZZZ LV VIP $6.31 CHC\", \"sc_id\": 211320, \"sc_name\": \"LVVIP631\" }, { \"type\": \"S\", \"sc_amount\": 17.95, \"sc_name_long\": \"ZZZ Zumanity $17.95 CEA\", \"sc_id\": 211496, \"sc_name\": \"ZU17952\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"HANS KLOK $7.00 TOD FEE\", \"sc_id\": 211620, \"sc_name\": \"TODHK700\" }, { \"type\": \"S\", \"sc_amount\": 12.38, \"sc_name_long\": \"ZZZ MBCH All-Star Beach Party\", \"sc_id\": 211622, \"sc_name\": \"MBS90726\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"Luxor Headliners $7.00 TOD FEE\", \"sc_id\": 211627, \"sc_name\": \"TODLXH7\" }, { \"type\": \"S\", \"sc_amount\": 19.95, \"sc_name_long\": \"O $19.95 ZLQ\", \"sc_id\": 211935, \"sc_name\": \"OTA1995\" }, { \"type\": \"S\", \"sc_amount\": 6.65, \"sc_name_long\": \"OT VIP $6.65 ZLQ\", \"sc_id\": 211936, \"sc_name\": \"OTAVP665\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"ZZZ R.U.N $7.00 TOD FEE\", \"sc_id\": 212098, \"sc_name\": \"TODRUN7\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"ZZZ MB EVO 2019\", \"sc_id\": 212291, \"sc_name\": \"VOS90802\" }, { \"type\": \"S\", \"sc_amount\": 8.95, \"sc_name_long\": \"ZZZ EXC TFDU $8.95\", \"sc_id\": 212367, \"sc_name\": \"EXTDU895\" }, { \"type\": \"S\", \"sc_amount\": 9.60, \"sc_name_long\": \"ZZZ EX ABG $9.60\", \"sc_id\": 212368, \"sc_name\": \"EXABG960\" }, { \"type\": \"S\", \"sc_amount\": 2.50, \"sc_name_long\": \"ZZZ HP $2.50 Service Fee\", \"sc_id\": 213003, \"sc_name\": \"HP250\" }, { \"type\": \"S\", \"sc_amount\": 2.50, \"sc_name_long\": \"ZZZ Hp Place $2.50 Service Fee\", \"sc_id\": 213064, \"sc_name\": \"HPA250\" }, { \"type\": \"S\", \"sc_amount\": 10.38, \"sc_name_long\": \"ZZZ MBCH Dirty Heads 2019\", \"sc_id\": 213077, \"sc_name\": \"MBS91004\" }, { \"type\": \"S\", \"sc_amount\": 7.96, \"sc_name_long\": \"ZZZ MBCH Bungalows 2019\", \"sc_id\": 213097, \"sc_name\": \"MBB90830\" }, { \"type\": \"S\", \"sc_amount\": 5.00, \"sc_name_long\": \"ZZZ HG $5.00 Service Cha\", \"sc_id\": 213106, \"sc_name\": \"HG5FEE\" }, { \"type\": \"S\", \"sc_amount\": 4.95, \"sc_name_long\": \"HOB Service Fee $4.95\", \"sc_id\": 213136, \"sc_name\": \"HOBSVC20\" }, { \"type\": \"S\", \"sc_amount\": 5.50, \"sc_name_long\": \"House of Blues MGM Fee $5.50\", \"sc_id\": 213137, \"sc_name\": \"MGMHOB20\" }, { \"type\": \"S\", \"sc_amount\": 18.95, \"sc_name_long\": \"KA $18.95 ZFQ\", \"sc_id\": 213495, \"sc_name\": \"KAA1895\" }, { \"type\": \"S\", \"sc_amount\": 18.95, \"sc_name_long\": \"LV $18.95 ZMQ\", \"sc_id\": 213496, \"sc_name\": \"LVA1895\" }, { \"type\": \"S\", \"sc_amount\": 19.95, \"sc_name_long\": \"Michael Jackson ONE $19.95 ZBQ\", \"sc_id\": 213957, \"sc_name\": \"MJA1995\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"TOD MGM Headliner $7 Fee\", \"sc_id\": 213961, \"sc_name\": \"TODMGH7\" }, { \"type\": \"S\", \"sc_amount\": 11.99, \"sc_name_long\": \"ZZZ Mirage Headliner $11.99\", \"sc_id\": 213981, \"sc_name\": \"MHA1199\" }, { \"type\": \"S\", \"sc_amount\": 6.31, \"sc_name_long\": \"LV VIP $6.31 ZMQ\", \"sc_id\": 214139, \"sc_name\": \"LVA631\" }, { \"type\": \"S\", \"sc_amount\": 11.99, \"sc_name_long\": \"ZZZ Mirage Headliner Rental\", \"sc_id\": 214140, \"sc_name\": \"MHA1199R\" }, { \"type\": \"S\", \"sc_amount\": 6.31, \"sc_name_long\": \"KA VIP $6.31 ZFQ\", \"sc_id\": 214903, \"sc_name\": \"KAAV631\" }, { \"type\": \"S\", \"sc_amount\": 17.95, \"sc_name_long\": \"Zumanity $17.95 ZGG\", \"sc_id\": 215322, \"sc_name\": \"ZUA1795\" }, { \"type\": \"S\", \"sc_amount\": 8.00, \"sc_name_long\": \"ZZZ Fantasy 2020 $8.00\", \"sc_id\": 215323, \"sc_name\": \"FTA800\" }, { \"type\": \"S\", \"sc_amount\": 13.74, \"sc_name_long\": \"ZZZ ACM Beach Bash\", \"sc_id\": 215423, \"sc_name\": \"MBS0404\" }, { \"type\": \"S\", \"sc_amount\": 3.50, \"sc_name_long\": \"ZZZ Brad Garretts $3.50 ZFF\", \"sc_id\": 215424, \"sc_name\": \"BGA350\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"TOD Shin Lim $7.00\", \"sc_id\": 215823, \"sc_name\": \"TODSL7\" }, { \"type\": \"S\", \"sc_amount\": 11.99, \"sc_name_long\": \"Terry Fator $11.99 ZMA\", \"sc_id\": 216274, \"sc_name\": \"TFA1199\" }, { \"type\": \"S\", \"sc_amount\": 13.99, \"sc_name_long\": \"Mirage Boyz II Men $13.99 ZMB\", \"sc_id\": 218451, \"sc_name\": \"BZA1399\" }, { \"type\": \"S\", \"sc_amount\": 11.25, \"sc_name_long\": \"MGM David Copperfield $11.25\", \"sc_id\": 218478, \"sc_name\": \"DCA1125\" }, { \"type\": \"S\", \"sc_amount\": 5.00, \"sc_name_long\": \"Hunger Games $5.00 Service Cha\", \"sc_id\": 220751, \"sc_name\": \"HGA500\" }, { \"type\": \"S\", \"sc_amount\": 3.50, \"sc_name_long\": \"ZZZ CSI $3.50 ZFC\", \"sc_id\": 220753, \"sc_name\": \"CSIA350\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"LX ATTRACTIONS $3.00 ZCI\", \"sc_id\": 220754, \"sc_name\": \"LXATI300\" }, { \"type\": \"S\", \"sc_amount\": 8.00, \"sc_name_long\": \"ZZZ Fantasy 2019 $8.00\", \"sc_id\": 220756, \"sc_name\": \"FT9800\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"LX ATTRACTIONS $3.00 ZCI\", \"sc_id\": 220757, \"sc_name\": \"LXABO300\" }, { \"type\": \"S\", \"sc_amount\": 8.95, \"sc_name_long\": \"Jabbawockeez at MGM $8.95 ZFE\", \"sc_id\": 221769, \"sc_name\": \"JAB895A\" }, { \"type\": \"S\", \"sc_amount\": 8.00, \"sc_name_long\": \"ZZZ Carrot Top 2020 $8.00\", \"sc_id\": 222471, \"sc_name\": \"CTA800\" }, { \"type\": \"S\", \"sc_amount\": 8.00, \"sc_name_long\": \"ZZZ Carrot Top 2020 M&G $8.00\", \"sc_id\": 222474, \"sc_name\": \"CTAMG800\" }, { \"type\": \"S\", \"sc_amount\": 18.95, \"sc_name_long\": \"ZZZ R.U.N $18.95 ZCQ\", \"sc_id\": 222749, \"sc_name\": \"RNA1895\" }, { \"type\": \"S\", \"sc_amount\": 9.60, \"sc_name_long\": \"EX ABG $9.60 ZDC\", \"sc_id\": 223246, \"sc_name\": \"EXABA960\" }, { \"type\": \"S\", \"sc_amount\": 8.95, \"sc_name_long\": \"EXC TFDU $8.95 ZDB\", \"sc_id\": 223247, \"sc_name\": \"EXTHA895\" }, { \"type\": \"S\", \"sc_amount\": 8.60, \"sc_name_long\": \"EX HANS $8.60 ZDD\", \"sc_id\": 223250, \"sc_name\": \"EXHAA860\" }, { \"type\": \"S\", \"sc_amount\": 11.99, \"sc_name_long\": \"ZZZ Shin Lim $11.99 CHP\", \"sc_id\": 223774, \"sc_name\": \"SLA1199\" }, { \"type\": \"S\", \"sc_amount\": 8.95, \"sc_name_long\": \"EXC TFDU $8.95\", \"sc_id\": 223801, \"sc_name\": \"EXATHDU\" }, { \"type\": \"S\", \"sc_amount\": 5.00, \"sc_name_long\": \"ZZZ Luxor NYE $5.00\", \"sc_id\": 224806, \"sc_name\": \"LXNYE500\" }, { \"type\": \"S\", \"sc_amount\": 8.75, \"sc_name_long\": \"ZZZ EX TOK $8.75 ZDE\", \"sc_id\": 225429, \"sc_name\": \"EXTKA875\" }, { \"type\": \"S\", \"sc_amount\": 5.00, \"sc_name_long\": \"ZZZ NYNY NYE $5.00 Service Fee\", \"sc_id\": 233236, \"sc_name\": \"NYNYE500\" }, { \"type\": \"S\", \"sc_amount\": 11.99, \"sc_name_long\": \"ZZZ MIR 1OAK SF $11.99 ZMD\", \"sc_id\": 233254, \"sc_name\": \"11991OAK\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"ESPORTS 2020 Arena Svc Fee\", \"sc_id\": 236899, \"sc_name\": \"EASA3FEE\" }, { \"type\": \"S\", \"sc_amount\": 11.99, \"sc_name_long\": \"Shin Lim $11.99 ZMI\", \"sc_id\": 237648, \"sc_name\": \"SLA11992\" }, { \"type\": \"S\", \"sc_amount\": 8.50, \"sc_name_long\": \"Rebelution SF\", \"sc_id\": 237655, \"sc_name\": \"MBS0731\" }, { \"type\": \"S\", \"sc_amount\": 8.50, \"sc_name_long\": \"Rebelution SF\", \"sc_id\": 237656, \"sc_name\": \"MBS0801\" }, { \"type\": \"S\", \"sc_amount\": 17.95, \"sc_name_long\": \"Mystere $17.95 SF TOD ZQB\", \"sc_id\": 239773, \"sc_name\": \"MYA1795\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"Mystere $7.00 TOD FEE\", \"sc_id\": 239774, \"sc_name\": \"TODMYA7\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"TOD MIR Headliner MH9 $7.00\", \"sc_id\": 240251, \"sc_name\": \"TODMH9\" }, { \"type\": \"O\", \"sc_amount\": 2.00, \"sc_name_long\": \"$2.00 Attraction Package Fee\", \"sc_id\": 242586, \"sc_name\": \"ATTFEE\" }, { \"type\": \"S\", \"sc_amount\": 5.00, \"sc_name_long\": \"NYNY NFI $5.00 ZGA\", \"sc_id\": 242592, \"sc_name\": \"NYNFI500\" }, { \"type\": \"S\", \"sc_amount\": 5.00, \"sc_name_long\": \"NYNY Coyote Ugly $5.00 ZGD\", \"sc_id\": 242595, \"sc_name\": \"NYACU500\" }, { \"type\": \"S\", \"sc_amount\": 9.95, \"sc_name_long\": \"EX TOK $9.95 ZDE\", \"sc_id\": 242783, \"sc_name\": \"EXTOK995\" }, { \"type\": \"S\", \"sc_amount\": 11.99, \"sc_name_long\": \"Atrium Headliners $11.99 ZCV\", \"sc_id\": 242955, \"sc_name\": \"LXAATRIU\" }, { \"type\": \"S\", \"sc_amount\": 8.00, \"sc_name_long\": \"NYNY $8.00 ZGT\", \"sc_id\": 242964, \"sc_name\": \"NYNYA800\" }, { \"type\": \"S\", \"sc_amount\": 8.00, \"sc_name_long\": \"NYNY NFI $8.00 ZGA\", \"sc_id\": 243483, \"sc_name\": \"NYNFI800\" }, { \"type\": \"S\", \"sc_amount\": 12.99, \"sc_name_long\": \"MIR Headliner $12.99 ZMR\", \"sc_id\": 243823, \"sc_name\": \"MHA1299\" }, { \"type\": \"S\", \"sc_amount\": 12.99, \"sc_name_long\": \"MIR Headliner Rent $12.99 ZMR\", \"sc_id\": 243824, \"sc_name\": \"MHA1299R\" }, { \"type\": \"S\", \"sc_amount\": 15.00, \"sc_name_long\": \"ZZZ CCTV MGM SF $15\", \"sc_id\": 244107, \"sc_name\": \"CCTMGM15\" }, { \"type\": \"S\", \"sc_amount\": 15.00, \"sc_name_long\": \"ZZZ CCTV Mirage SF $15\", \"sc_id\": 244108, \"sc_name\": \"CCTMIR15\" }, { \"type\": \"S\", \"sc_amount\": 15.00, \"sc_name_long\": \"ZZZ CCTV Bellagio SF $15\", \"sc_id\": 244109, \"sc_name\": \"CCTBEL15\" }, { \"type\": \"S\", \"sc_amount\": 15.00, \"sc_name_long\": \"ZZZ CCTV Mandalay Bay SF $15\", \"sc_id\": 244110, \"sc_name\": \"CCTMB15\" }, { \"type\": \"S\", \"sc_amount\": 15.00, \"sc_name_long\": \"ZZZ CCTV Park MGM SF $15\", \"sc_id\": 244111, \"sc_name\": \"CCTPRK15\" }, { \"type\": \"S\", \"sc_amount\": 15.00, \"sc_name_long\": \"ZZZ CCTV NYNY SF $15\", \"sc_id\": 244112, \"sc_name\": \"CCTNYN15\" }, { \"type\": \"S\", \"sc_amount\": 11.99, \"sc_name_long\": \"MGM DC Headliner $11.99 ZFX\", \"sc_id\": 244739, \"sc_name\": \"DTA1199\" }, { \"type\": \"S\", \"sc_amount\": 7.00, \"sc_name_long\": \"Park $7.00 S Fee\", \"sc_id\": 244743, \"sc_name\": \"PRK7\" }, { \"type\": \"S\", \"sc_amount\": 11.99, \"sc_name_long\": \"ZZZ MGM KA Headliner $11.99\", \"sc_id\": 244749, \"sc_name\": \"KTA1199\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"Trans Fee Atrium Headliner\", \"sc_id\": 244750, \"sc_name\": \"ORDLXA\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"Trans Fee BMG\", \"sc_id\": 244751, \"sc_name\": \"ORDBLA\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"Trans Fee BGCC\", \"sc_id\": 244752, \"sc_name\": \"ORDBGA\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"Trans Fee Carrot Top\", \"sc_id\": 244753, \"sc_name\": \"ORDCTA\" }, { \"type\": \"O\", \"sc_amount\": 2.50, \"sc_name_long\": \"Trans Fee ESPORTS\", \"sc_id\": 244755, \"sc_name\": \"ORDSAA\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"Trans Fee BeeGees\", \"sc_id\": 244756, \"sc_name\": \"ORDABA\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"Trans Fee TOK\", \"sc_id\": 244758, \"sc_name\": \"ORDTKA\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"Trans Fee Thunder\", \"sc_id\": 244759, \"sc_name\": \"ORDTHA\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"Trans Fee Fantasy\", \"sc_id\": 244760, \"sc_name\": \"ORDFTA\" }, { \"type\": \"O\", \"sc_amount\": 2.50, \"sc_name_long\": \"Trans Fee Hunger Games\", \"sc_id\": 244762, \"sc_name\": \"ORDHGA\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"Trans Fee Jabbawockeez\", \"sc_id\": 244763, \"sc_name\": \"ORDJWA\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"Trans Fee KA\", \"sc_id\": 244764, \"sc_name\": \"ORDKAA\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"Trans Fee LOVE\", \"sc_id\": 244765, \"sc_name\": \"ORDLVA\" }, { \"type\": \"O\", \"sc_amount\": 2.50, \"sc_name_long\": \"Trans Fee Titanic\", \"sc_id\": 244766, \"sc_name\": \"ORDLXAT\" }, { \"type\": \"O\", \"sc_amount\": 2.50, \"sc_name_long\": \"Trans Fee Bodies\", \"sc_id\": 244767, \"sc_name\": \"ORDLXAB\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"Trans Fee David Copperfield\", \"sc_id\": 244768, \"sc_name\": \"ORDDCA\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"Trans Fee DT Headliner\", \"sc_id\": 244769, \"sc_name\": \"ORDDTA\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"Trans Fee MJ ONE\", \"sc_id\": 244770, \"sc_name\": \"ORDMJA\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"Trans Fee 1OAK\", \"sc_id\": 244771, \"sc_name\": \"ORD1OK\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"Trans Fee Mirage Headliner\", \"sc_id\": 244772, \"sc_name\": \"ORDMHA\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"Trans Fee 4-Wall MH\", \"sc_id\": 244773, \"sc_name\": \"ORDMHA4\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"Trans Fee Boyz II Men\", \"sc_id\": 244774, \"sc_name\": \"ORDBZA\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"Trans Fee O\", \"sc_id\": 244775, \"sc_name\": \"ORDOTA\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"ZZZ Trans Fee R.U.N\", \"sc_id\": 244776, \"sc_name\": \"ORDRNA\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"Trans Fee Shin Lim\", \"sc_id\": 244777, \"sc_name\": \"ORDSLA\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"Trans Fee Terry Fator\", \"sc_id\": 244778, \"sc_name\": \"ORDTFA\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"Trans Fee Zumanity\", \"sc_id\": 244779, \"sc_name\": \"ORDZUA\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"Trans Fee KA Headliner\", \"sc_id\": 244780, \"sc_name\": \"ORDKTA\" }, { \"type\": \"O\", \"sc_amount\": 2.50, \"sc_name_long\": \"Trans Fee Attractions Pkg\", \"sc_id\": 244781, \"sc_name\": \"ATTOF\" }, { \"type\": \"O\", \"sc_amount\": 2.50, \"sc_name_long\": \"Trans Fee Shark Reef\", \"sc_id\": 244782, \"sc_name\": \"ORDSRA\" }, { \"type\": \"O\", \"sc_amount\": 2.50, \"sc_name_long\": \"Trans Fee Secret Garden\", \"sc_id\": 244783, \"sc_name\": \"ORDSGA\" }, { \"type\": \"O\", \"sc_amount\": 2.50, \"sc_name_long\": \"Trans Fee BGFA\", \"sc_id\": 244784, \"sc_name\": \"ORDFAA\" }, { \"type\": \"O\", \"sc_amount\": 2.50, \"sc_name_long\": \"Trans Fee 4D Ultimate Exp\", \"sc_id\": 244785, \"sc_name\": \"ORDDEA\" }, { \"type\": \"S\", \"sc_amount\": 8.93, \"sc_name_long\": \"Iration - Coastin' Summer Tour\", \"sc_id\": 244882, \"sc_name\": \"MBS0829\" }, { \"type\": \"S\", \"sc_amount\": 11.99, \"sc_name_long\": \"NYNY Terry Fator $11.99 ZGE\", \"sc_id\": 251258, \"sc_name\": \"NYTF1199\" }, { \"type\": \"S\", \"sc_amount\": 4.00, \"sc_name_long\": \"ZZZ Brad Garretts $4.00 ZFF\", \"sc_id\": 251352, \"sc_name\": \"BGCC400\" }, { \"type\": \"S\", \"sc_amount\": 10.95, \"sc_name_long\": \"ZZZ Jabbawockeez at MGM $10.95\", \"sc_id\": 251353, \"sc_name\": \"JAB1095\" }, { \"type\": \"S\", \"sc_amount\": 8.50, \"sc_name_long\": \"ZZZ Carrot Top 2021 $8.50\", \"sc_id\": 252870, \"sc_name\": \"CTA850\" }, { \"type\": \"S\", \"sc_amount\": 8.50, \"sc_name_long\": \"ZZZ Carrot Top 2021 M&G $8.50\", \"sc_id\": 252871, \"sc_name\": \"CTAMG850\" }, { \"type\": \"S\", \"sc_amount\": 5.00, \"sc_name_long\": \"Brad Garretts $5.00 ZFF\", \"sc_id\": 253137, \"sc_name\": \"BGCC500\" }, { \"type\": \"S\", \"sc_amount\": 9.00, \"sc_name_long\": \"Fantasy 2021 $9.00\", \"sc_id\": 253149, \"sc_name\": \"FTA900\" }, { \"type\": \"S\", \"sc_amount\": 9.50, \"sc_name_long\": \"Carrot Top 2021 $9.50\", \"sc_id\": 255667, \"sc_name\": \"CTB950\" }, { \"type\": \"S\", \"sc_amount\": 9.50, \"sc_name_long\": \"Carrot Top 2021 M&G $9.50\", \"sc_id\": 255668, \"sc_name\": \"CTBMG950\" }, { \"type\": \"S\", \"sc_amount\": 11.38, \"sc_name_long\": \"Sublime With Rome\", \"sc_id\": 258953, \"sc_name\": \"MBS0704\" }, { \"type\": \"S\", \"sc_amount\": 11.23, \"sc_name_long\": \"Lee Brice\", \"sc_id\": 259125, \"sc_name\": \"MBSF801\" }, { \"type\": \"S\", \"sc_amount\": 11.38, \"sc_name_long\": \"Cole Swindell\", \"sc_id\": 259126, \"sc_name\": \"MBSF806\" }, { \"type\": \"S\", \"sc_amount\": 9.52, \"sc_name_long\": \"Caifanes\", \"sc_id\": 259127, \"sc_name\": \"MBSF828\" }, { \"type\": \"S\", \"sc_amount\": 9.32, \"sc_name_long\": \"Bronco\", \"sc_id\": 259128, \"sc_name\": \"MBSF918\" }, { \"type\": \"S\", \"sc_amount\": 6.54, \"sc_name_long\": \"EX MK $6.54 ZDD\", \"sc_id\": 259277, \"sc_name\": \"EXMK654\" }, { \"type\": \"S\", \"sc_amount\": 12.99, \"sc_name_long\": \"MGM KA Headliner $12.99 ZFX\", \"sc_id\": 259279, \"sc_name\": \"KTB1299\" }, { \"type\": \"S\", \"sc_amount\": 14.95, \"sc_name_long\": \"AGT LV LIVE $14.95\", \"sc_id\": 259975, \"sc_name\": \"AGT1495\" }, { \"type\": \"S\", \"sc_amount\": 11.38, \"sc_name_long\": \"Dwight Yoakam-Randy Houser SF\", \"sc_id\": 259979, \"sc_name\": \"MBS0709\" }, { \"type\": \"S\", \"sc_amount\": 9.32, \"sc_name_long\": \"Iration 2021 SF\", \"sc_id\": 261900, \"sc_name\": \"MBS0807\" }, { \"type\": \"S\", \"sc_amount\": 9.42, \"sc_name_long\": \"98 Degrees\", \"sc_id\": 263381, \"sc_name\": \"MBSF916\" }, { \"type\": \"S\", \"sc_amount\": 8.18, \"sc_name_long\": \"Brad Garretts CC $8.18 ZFF\", \"sc_id\": 264793, \"sc_name\": \"BGCC818\" }, { \"type\": \"S\", \"sc_amount\": 13.99, \"sc_name_long\": \"MGM DC Headliner $13.99 ZFX\", \"sc_id\": 266369, \"sc_name\": \"DTB1399\" }, { \"type\": \"S\", \"sc_amount\": 14.16, \"sc_name_long\": \"MHC Daniel Tosh $14.16\", \"sc_id\": 268044, \"sc_name\": \"MHCT1416\" }, { \"type\": \"S\", \"sc_amount\": 15.95, \"sc_name_long\": \"MA $15.95 ZGQ\", \"sc_id\": 271663, \"sc_name\": \"MAC1595\" }, { \"type\": \"O\", \"sc_amount\": 5.00, \"sc_name_long\": \"CT Order Fee $5 ZCD\", \"sc_id\": 273376, \"sc_name\": \"CTORDER\" }, { \"type\": \"S\", \"sc_amount\": 19.95, \"sc_name_long\": \"KA $19.95 ZFQ\", \"sc_id\": 277159, \"sc_name\": \"KA1995\" }, { \"type\": \"S\", \"sc_amount\": 20.95, \"sc_name_long\": \"Michael Jackson ONE $20.95 ZBQ\", \"sc_id\": 277160, \"sc_name\": \"MJD2095\" }, { \"type\": \"S\", \"sc_amount\": 11.78, \"sc_name_long\": \"EX ABG $11.78 ZDC\", \"sc_id\": 285187, \"sc_name\": \"EXBG1178\" }, { \"type\": \"S\", \"sc_amount\": 13.31, \"sc_name_long\": \"EXC TFDU $13.31 ZDB\", \"sc_id\": 285493, \"sc_name\": \"EXDTHDU\" }, { \"type\": \"S\", \"sc_amount\": 8.72, \"sc_name_long\": \"EX MK $8.72 ZDD\", \"sc_id\": 285529, \"sc_name\": \"EXDMK872\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"LX ATTRACTIONS $3.00 ZCN\", \"sc_id\": 286253, \"sc_name\": \"LXCBO300\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"LX KT ATTRACTION $3.00 ZCP\", \"sc_id\": 286459, \"sc_name\": \"LXCKT300\" }, { \"type\": \"S\", \"sc_amount\": 16.95, \"sc_name_long\": \"MA $16.95 ZGQ\", \"sc_id\": 286647, \"sc_name\": \"MAD1695\" }, { \"type\": \"S\", \"sc_amount\": 13.00, \"sc_name_long\": \"LX Theater Headliners $13.00\", \"sc_id\": 290222, \"sc_name\": \"LXDTHTR\" }, { \"type\": \"S\", \"sc_amount\": 3.00, \"sc_name_long\": \"Fantasy VIP $3.00 ZCB\", \"sc_id\": 290453, \"sc_name\": \"FTVIP300\" } ], \"result\": 0, \"ref\": \"${REFID}\", \"cmd\": \"service_charge_details\", \"sql_code\": 0 }, \"header\": { \"src_sys_type\": ${SrcSysType}, \"archtics_version\": \"${archticsVersion}\", \"ver\": ${ver}, \"src_sys_name\": \"${SrcSysName}\", \"ats_version\": \"4.97.1\", \"result\": 0 } }"
+                    },
+					"_behaviors":{
+						"copy": [{
+							"from": "body",
+							"into": "${ver}",
+							"using":{
+								"method":"jsonpath",
+								"selector":"$..ver"
+							}
+						},
+						{
+                            "from": "body",
+                            "into": "${SrcSysType}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..src_sys_type"
+                            }
+                        },
+						{
+                            "from": "body",
+                            "into": "${SrcSysName}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..src_sys_name"
+                            }
+                        },
+						{
+                            "from": "body",
+                            "into": "${archticsVersion}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..archtics_version"
+                            }
+                        },
+						{
+                            "from": "body",
+                            "into": "${REFID}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..ref"
+                            }
+                        }]
+					}
+                }
+            ]
+        },
+        {
+            "predicates": [
+                {
+                    "contains": {
+                        "body": "check_out"
+                    }
+                }
+            ],
+            "responses": [
+			    {
+                    "is": {
+                        "headers": {
+                            "Content-Type":"application/json"
+                        },
+                        "body": "{ \"header\": { \"src_sys_type\": ${SrcSysType}, \"archtics_version\": \"${archticsVersion}\", \"ver\": ${ver}, \"src_sys_name\": \"${SrcSysName}\", \"ats_version\": \"4.97.1\", \"result\": 0 }, \"command1\": { \"cmd\": \"check_out\", \"cart_items\": [ { \"delayed_delivery\": \"N\", \"order_line_item\": 1, \"delivery_methods\": [ { \"dm_code\": \"DD\", \"dm_charge_amount\": 0.00, \"dm_charge_id\": 205 }, { \"dm_code\": \"TF\", \"dm_charge_amount\": 0.00, \"dm_charge_id\": 70881 }, { \"dm_code\": \"WC\", \"dm_charge_amount\": 0.00, \"dm_charge_id\": 205 } ], \"membership_required\": \"N\" } ], \"account_credit\": 0.00, \"service_charges\": [ { \"sc_id\": 242783, \"sc_amount\": 9.95 } ], \"result\": 0, \"ref\": \"${REFID}\", \"sql_code\": 0 } }"
+                    },
+					"_behaviors":{
+						"copy": [{
+							"from": "body",
+							"into": "${REFID}",
+							"using":{
+								"method":"jsonpath",
+								"selector":"$..ref"
+							}
+						},
+						{
+							"from": "body",
+							"into": "${ver}",
+							"using":{
+								"method":"jsonpath",
+								"selector":"$..ver"
+							}
+						},
+						{
+                            "from": "body",
+                            "into": "${SrcSysType}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..src_sys_type"
+                            }
+                        },
+						{
+                            "from": "body",
+                            "into": "${SrcSysName}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..src_sys_name"
+                            }
+                        },
+						{
+                            "from": "body",
+                            "into": "${archticsVersion}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..archtics_version"
+                            }
+                        }]
+					}
+                },
+				{
+					"is": {
+						"headers": {
+							"Content-Type":"application/json"
+						},
+						"body": 
+						{
+							"header": {
+								"src_sys_type": "${SrcSysType}",
+								"archtics_version": "${archticsVersion}",
+								"ver": "${ver}",
+								"src_sys_name": "${SrcSysName}",
+								"ats_version": "4.97.1",
+								"result": 0
+							},
+							"command1": {
+								"cart_items": [
+									{
+										"delayed_delivery": "N",
+										"order_line_item": 1,
+										"delivery_methods": [
+											{
+												"dm_code": "TF",
+												"dm_charge_amount": 0.0,
+												"dm_charge_id": 70881
+											}
+										]
+									}
+								],
+								"service_charges": [
+									{
+										"sc_id": 220754,
+										"sc_amount": 3.0
+									}
+								],
+								"account_credit": 0,
+								"cmd": "check_out",
+								"result": 0,
+								"ref": "${REFID}",
+								"sql_code": 0,
+								"return_count": 0
+							}
+						}
+					},
+					"_behaviors":{
+						"copy": [{
+							"from": "body",
+							"into": "${REFID}",
+							"using":{
+								"method":"jsonpath",
+								"selector":"$..ref"
+							}
+						},
+						{
+							"from": "body",
+							"into": "${ver}",
+							"using":{
+								"method":"jsonpath",
+								"selector":"$..ver"
+							}
+						},
+						{
+                            "from": "body",
+                            "into": "${SrcSysType}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..src_sys_type"
+                            }
+                        },
+						{
+                            "from": "body",
+                            "into": "${SrcSysName}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..src_sys_name"
+                            }
+                        },
+						{
+                            "from": "body",
+                            "into": "${archticsVersion}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..archtics_version"
+                            }
+                        }]
+					}
+				}
+            ]
+        },
+		{
+			"predicates": [
+                {
+                    "contains": {
+                        "body": "customer_query"
+                    }
+                }
+            ],
+			"responses": [
+				{
+					"is": {
+						"headers": {
+                            "Content-Type":"application/json"
+                        },
+						"body": "{ \"header\": { \"ats_version\": \"4.97.1\", \"result\": 0, \"ver\": \"${ver}\", \"src_sys_type\": \"${SrcSysType}\", \"src_sys_name\": \"${SrcSysName}\", \"archtics_version\": \"${archticsVersion}\" }, \"command1\": { \"cmd\": \"customer_query\", \"ref\": \"${REFID}\", \"error_detail\": \"Account not found for input email addr: ${email}\", \"result\": 5024 } }"
+					},
+					"_behaviors":{
+						"copy": [{
+							"from": "body",
+							"into": "${REFID}",
+							"using":{
+								"method":"jsonpath",
+								"selector":"$..ref"
+							}
+						},
+						{
+							"from": "body",
+							"into": "${email}",
+							"using":{
+								"method":"jsonpath",
+								"selector":"$..email"
+							}
+						},
+						{
+							"from": "body",
+							"into": "${ver}",
+							"using":{
+								"method":"jsonpath",
+								"selector":"$..ver"
+							}
+						},
+						{
+                            "from": "body",
+                            "into": "${SrcSysType}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..src_sys_type"
+                            }
+                        },
+						{
+                            "from": "body",
+                            "into": "${SrcSysName}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..src_sys_name"
+                            }
+                        },
+						{
+                            "from": "body",
+                            "into": "${archticsVersion}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..archtics_version"
+                            }
+                        }]
+					}
+				},
+				{
+					"is": {
+						"statusCode": 202,
+						"headers": {
+                            "Content-Type":"application/json"
+                        },
+						"body":
+						{
+							"header": {
+								"ats_version": "4.97.1",
+								"result": 0,
+								"ver": "${ver}",
+								"src_sys_type": "${SrcSysType}",
+								"src_sys_name": "${SrcSysName}",
+								"archtics_version": "${archticsVersion}"
+							},
+							"command1": {
+								"cmd": "customer_query",
+								"ref": "${REFID}",
+								"result": 0
+							}
+						}
+					},
+					"_behaviors":{
+						"copy": [{
+							"from": "body",
+							"into": "${REFID}",
+							"using":{
+								"method":"jsonpath",
+								"selector":"$..ref"
+							}
+						},
+						{
+							"from": "body",
+							"into": "${ver}",
+							"using":{
+								"method":"jsonpath",
+								"selector":"$..ver"
+							}
+						},
+						{
+                            "from": "body",
+                            "into": "${SrcSysType}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..src_sys_type"
+                            }
+                        },
+						{
+                            "from": "body",
+                            "into": "${SrcSysName}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..src_sys_name"
+                            }
+                        },
+						{
+                            "from": "body",
+                            "into": "${archticsVersion}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..archtics_version"
+                            }
+                        }]
+					}
+				}
+			]
+		},
+		{
+			"predicates": [
+                {
+                    "contains": {
+                        "body": "customer_add"
+                    }
+                }
+            ],
+			"responses": [
+				{
+					"inject": "function () {return {body: { \"header\": { \"ver\": \"1\", \"src_sys_type\": \"2\", \"src_sys_name\": \"MGMM\", \"archtics_version\": \"V999\", \"ats_version\": \"4.97.1\", \"result\": 0 }, \"command1\": { \"cmd\":\"customer_add\", \"acct_id\": Math.floor(Math.random() * 900000000) + 100000000} }}}",
+					"_behaviors":{
+						"copy": [{
+							"from": "body",
+							"into": "${REFID}",
+							"using":{
+								"method":"jsonpath",
+								"selector":"$..ref"
+							}
+						},
+						{
+							"from": "body",
+							"into": "${ver}",
+							"using":{
+								"method":"jsonpath",
+								"selector":"$..ver"
+							}
+						},
+						{
+                            "from": "body",
+                            "into": "${SrcSysType}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..src_sys_type"
+                            }
+                        },
+						{
+                            "from": "body",
+                            "into": "${SrcSysName}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..src_sys_name"
+                            }
+                        },
+						{
+                            "from": "body",
+                            "into": "${archticsVersion}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..archtics_version"
+                            }
+                        }]
+					}
+				}
+			]
+		},
+		{
+			"predicates": [
+                {
+                    "contains": {
+                        "body": "payment_request"
+                    }
+                }
+            ],
+			"responses": [
+			{
+				"is": {
+					"headers": {
+                            "Content-Type":"application/json"
+                        },
+					"body": "{ \"header\": { \"src_sys_type\": \"${SrcSysType}\", \"archtics_version\": \"${archticsVersion}\", \"ver\": \"${ver}\", \"src_sys_name\": \"${SrcSysName}\", \"ats_version\": \"4.97.1\", \"result\": 0 }, \"command1\": { \"mop\": [ { \"cc_captured\": \"Y\" } ], \"cmd\": \"payment_request\", \"result\": 0, \"ref\": \"${REFID}\", \"sql_code\": 0, \"return_count\": 0 } }"
+				},
+				"_behaviors":{
+					"copy": [{
+							"from": "body",
+							"into": "${REFID}",
+							"using":{
+								"method":"jsonpath",
+								"selector":"$..ref"
+							}
+						},
+						{
+							"from": "body",
+							"into": "${ver}",
+							"using":{
+								"method":"jsonpath",
+								"selector":"$..ver"
+							}
+						},
+						{
+                            "from": "body",
+                            "into": "${SrcSysType}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..src_sys_type"
+                            }
+                        },
+						{
+                            "from": "body",
+                            "into": "${SrcSysName}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..src_sys_name"
+                            }
+                        },
+						{
+                            "from": "body",
+                            "into": "${archticsVersion}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..archtics_version"
+                            }
+                        }]
+				}
+			},
+			{
+				"is": {
+					"headers": {
+						"Content-Type":"application/json"
+					},
+					"body": "{ \"header\": { \"ats_version\": \"4.97.1\", \"result\": 0, \"ver\": \"${ver}\", \"src_sys_type\": \"${SrcSysType}\", \"src_sys_name\": \"${SrcSysName}\", \"archtics_version\": \"${archticsVersion}\" }, \"command1\": { \"cmd\": \"payment_request\", \"ref\": \"${REFID}\", \"result\": 0 } }"
+					
+				},
+				"_behaviors":{
+					"copy": [{
+						"from": "body",
+						"into": "${REFID}",
+						"using":{
+							"method":"jsonpath",
+							"selector":"$..ref"
+						}
+					},
+						{
+							"from": "body",
+							"into": "${ver}",
+							"using":{
+								"method":"jsonpath",
+								"selector":"$..ver"
+							}
+						},
+						{
+                            "from": "body",
+                            "into": "${SrcSysType}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..src_sys_type"
+                            }
+                        },
+						{
+                            "from": "body",
+                            "into": "${SrcSysName}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..src_sys_name"
+                            }
+                        },
+						{
+                            "from": "body",
+                            "into": "${archticsVersion}",
+                            "using":{
+                                "method":"jsonpath",
+                                "selector":"$..archtics_version"
+                            }
+                        }]
+				}
+			}
+			]
+		},
+		{
+			"predicates": [{
+				"contains": {
+                        "body": "ticket_print"
+                    }
+			}],
+			"responses": [{
+				"is": {
+					"headers": {
+                            "Content-Type":"application/json"
+                        },
+						"body": "{ \"header\": { \"ats_version\": \"4.97.1\", \"result\": 0, \"ver\": \"${ver}\", \"src_sys_type\": \"${SrcSysType}\", \"src_sys_name\": \"${SrcSysName}\", \"archtics_version\": \"${archticsVersion}\" }, \"command1\": { \"cmd\": \"ticket_print\", \"ref\": \"${REFID}\", \"result\": 0 } }"
+				},
+				"_behaviors": {
+					"copy": [{
+						"from": "body",
+						"into": "${REFID}",
+						"using":{
+							"method":"jsonpath",
+							"selector":"$..ref"
+						}
+					},
+					{
+						"from": "body",
+						"into": "${ver}",
+						"using":{
+							"method":"jsonpath",
+							"selector":"$..ver"
+						}
+					},
+					{
+                        "from": "body",
+                        "into": "${SrcSysType}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..src_sys_type"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${SrcSysName}",
+                        "using":{
+                            "method":"jsonpath",
+                             "selector":"$..src_sys_name"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${archticsVersion}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..archtics_version"
+                        }
+                    }]
+				}
+			},
+			{
+				"is": {
+					"headers": {
+						"Content-Type":"application/json"
+					},
+					"body": "{ \"header\": { \"src_sys_type\": \"${SrcSysType}\", \"archtics_version\": \"${archticsVersion}\", \"ver\": \"${ver}\", \"src_sys_name\": \"${SrcSysName}\", \"ats_version\": \"4.97.1\", \"result\": 0 }, \"command1\": { \"tickets\": [ { \"event_line1\": \"Excalibur Presents\", \"event_line2\": \"Tournament of Kings\", \"event_line3\": \"Doors Open 30 Minutes Prior to Show Time\", \"event_line5\": \"Wednesday, June 14, 2023 6:00PM\", \"event_line6\": \"Service Fee: $9.13 + $0.82 LET = $9.95 Applies\", \"barcode\": \"624483684159\", \"face_value\": \"72.66\", \"first_name\": \"--REDACTED--\", \"last_name\": \"--REDACTED--\", \"event_name\": \"${eventName}\", \"purchase_price\": \"72.66\", \"TicketTypeText\": \"Standard\", \"PrintCount\": \"1\", \"event_desc\": \"Tournament of Kings at Excalibur\", \"GAIndicator\": 0, \"section_desc\": \"${sectionName}\", \"row\": \"${rowName}\", \"portal\": \"SPAIN LEFT\", \"opponent\": \"TOK WED 6:00PM\", \"event_time\": \"18:00:00\", \"seat\": \"${seatNum}\", \"price_code\": \"BN03\", \"price_code_description\": \"Category B\", \"event_date\": \"2023-06-14\", \"section\": \"${sectionName}\" } ], \"cmd\": \"ticket_print\", \"result\": 0, \"ref\": \"${REFID}\", \"sql_code\": 0, \"return_count\": 0 } }"
+				},
+				"_behaviors": {
+					"copy": [{
+						"from": "body",
+						"into": "${REFID}",
+						"using": {
+							"method":"jsonpath",
+							"selector":"$..ref"
+						}
+					},
+					{
+						"from": "body",
+						"into": "${ver}",
+						"using":{
+							"method":"jsonpath",
+							"selector":"$..ver"
+						}
+					},
+					{
+                        "from": "body",
+                        "into": "${SrcSysType}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..src_sys_type"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${SrcSysName}",
+                        "using":{
+                            "method":"jsonpath",
+                             "selector":"$..src_sys_name"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${archticsVersion}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..archtics_version"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${eventName}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..event_name"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${sectionName}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..section_name"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${rowName}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..row_name"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${seatNum}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..seat_num"
+                        }
+                    }]
+				}
+			}
+			]
+		},
+		{
+			"predicates": [{
+				"contains": {
+                        "body": "ticket_text_update"
+                    }
+			}],
+			"responses": [{
+				"is": {
+					"headers": {
+						"Content-Type":"application/json"
+					},
+					"body": "[ { \"sql_code\": 100, \"result\": \"Error with account ID or seat_num.\" } ]"
+				}
+				
+			},
+			{
+				"is": {
+					"headers": {
+						"Content-Type":"application/json"
+					},
+					"body": "[{\"sql_code\":0,\"result\":\"The update was successful.\"}]"
+				}
+			}]
+		},
+		{
+			"predicates": [{
+				"contains": {
+					"body": "seats_hold"
+				}
+			}],
+			"responses": [{
+				"inject": "function () {return {body: { \"header\": { \"src_sys_type\": \"${SrcSysType}\", \"archtics_version\": \"${archticsVersion}\", \"ver\": \"${ver}\", \"src_sys_name\": \"${SrcSysName}\", \"ats_version\": \"4.97.1\", \"result\": 0 }, \"command1\": { \"seats\": [ { \"last_seat\": 21, \"section_name\": \"SEC2\", \"row_name\": \"GA0\", \"ticket_type_code\": \"${ticketTypeCode}\", \"seat_increment\": 1, \"event_name\": \"${eventName}\", \"ga_indicator\": \"N\", \"seat_num\": 21, \"block_number\": 1, \"price_code\": \"${priceCode}\", \"num_seats\": \"${numSeats}\", \"order_line_item\": 1, \"required_donation_ind\": \"N\" } ], \"order_num_out\": Math.floor(Math.random() * 900000000) + 100000000, \"cmd\": \"seats_hold\", \"result\": 0, \"ref\": \"${REFID}\", \"sql_code\": 0, \"return_count\": 1 } }}}",	
+				"_behaviors": {
+					"copy": [{
+						"from": "body",
+						"into": "${REFID}",
+						"using": {
+							"method":"jsonpath",
+							"selector":"$..ref"
+						}
+					},
+					{
+						"from": "body",
+						"into": "${ver}",
+						"using":{
+							"method":"jsonpath",
+							"selector":"$..ver"
+						}
+					},
+					{
+                        "from": "body",
+                        "into": "${SrcSysType}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..src_sys_type"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${SrcSysName}",
+                        "using":{
+                            "method":"jsonpath",
+                             "selector":"$..src_sys_name"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${archticsVersion}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..archtics_version"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${eventName}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..event_name"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${priceCode}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..price_code"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${ticketTypeCode}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..ticket_type_code"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${numSeats}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..num_seats"
+                        }
+                    }]
+				}
+			}]
+		},
+		{
+			"predicates": [{
+				"contains": {
+					"body": "service_charges_for_an_order"
+				}
+			}],
+			"responses": [
+			{
+				"inject": "function () { return { body: [ { \"sc_id\": \"70881\", \"orig_purchase_datetime\": new Date().toISOString().replace('T',' ').replace('Z',''), \"order_num\": \"${orderNum}\", \"order_line_item\": \"3\", \"order_line_item_seq\": \"1\", \"event_name\": \"TFAST\", \"item_name_long\": \"Print at Home\", \"purchase_amount\": \"0.00\", \"owed_amount\": \"0.00\", \"possible_delivery_methods\": \"PH,TF,PM,PN\" }, { \"sc_id\": \"242783\", \"orig_purchase_datetime\": new Date().toISOString().replace('T',' ').replace('Z',''), \"order_num\": \"${orderNum}\", \"order_line_item\": \"2\", \"order_line_item_seq\": \"1\", \"event_name\": \"EXTOK995\", \"item_name_long\": \"EX TOK $9.95 ZDE\", \"purchase_amount\": \"9.95\", \"owed_amount\": \"0.00\", \"possible_delivery_methods\": \"\" } ] } }",
+				"_behaviors": {
+					"copy": [{
+                        "from": "body",
+                        "into": "${orderNum}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..order_num"
+                        }
+                    }]
+				}
+				
+			},
+			{
+				"inject": "function () {return {body: [ { \"sc_id\": \"39579\", \"orig_purchase_datetime\": new Date().toISOString().replace('T',' ').replace('Z',''), \"order_num\": \"${orderNum}\", \"order_line_item\": \"2\", \"order_line_item_seq\": \"1\", \"event_name\": \"APINOFEE\", \"item_name_long\": \"$0.00 API Fee\", \"purchase_amount\": \"0.00\", \"owed_amount\": \"0.00\", \"possible_delivery_methods\": \"\" }, { \"sc_id\": \"70881\", \"orig_purchase_datetime\": new Date().toISOString().replace('T',' ').replace('Z',''), \"order_num\": \"${orderNum}\", \"order_line_item\": \"3\", \"order_line_item_seq\": \"1\", \"event_name\": \"TFAST\", \"item_name_long\": \"Print at Home\", \"purchase_amount\": \"0.00\", \"owed_amount\": \"0.00\", \"possible_delivery_methods\": \"PH,TF,PM,PN\" } ]}}",
+				"_behaviors": {
+					"copy": [{
+                        "from": "body",
+                        "into": "${orderNum}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..order_num"
+                        }
+                    }]
+				}
+			},
+			{
+				"inject": "function () {return {body: [ { \"sc_id\": \"70881\", \"orig_purchase_datetime\": new Date().toISOString().replace('T',' ').replace('Z',''), \"order_num\": \"${orderNum}\", \"order_line_item\": \"3\", \"order_line_item_seq\": \"1\", \"event_name\": \"TFAST\", \"item_name_long\": \"Print at Home\", \"purchase_amount\": \"0.00\", \"owed_amount\": \"0.00\", \"possible_delivery_methods\": \"PH,TF,PM,PN\" }, { \"sc_id\": \"285187\", \"orig_purchase_datetime\": new Date().toISOString().replace('T',' ').replace('Z',''), \"order_num\": \"${orderNum}\", \"order_line_item\": \"2\", \"order_line_item_seq\": \"1\", \"event_name\": \"EXBG1178\", \"item_name_long\": \"EX ABG $11.78 ZDC\", \"purchase_amount\": \"11.78\", \"owed_amount\": \"0.00\", \"possible_delivery_methods\": \"\" } ]}}",
+				"_behaviors": {
+					"copy": [{
+                        "from": "body",
+                        "into": "${orderNum}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..order_num"
+                        }
+                    }]
+				}
+			},
+            {
+				"inject": "function () {return {body: [ { \"sc_id\": \"70881\", \"orig_purchase_datetime\": new Date().toISOString().replace('T',' ').replace('Z',''), \"order_num\": \"${orderNum}\", \"order_line_item\": \"3\", \"order_line_item_seq\": \"1\", \"event_name\": \"TFAST\", \"item_name_long\": \"Print at Home\", \"purchase_amount\": \"0.00\", \"owed_amount\": \"0.00\", \"possible_delivery_methods\": \"PH,TF,PM,PN\" }, { \"sc_id\": \"285493\", \"orig_purchase_datetime\": new Date().toISOString().replace('T',' ').replace('Z',''), \"order_num\": \"${orderNum}\", \"order_line_item\": \"2\", \"order_line_item_seq\": \"1\", \"event_name\": \"EXDTHDU\", \"item_name_long\": \"EXC TFDU $13.31 ZDB\", \"purchase_amount\": \"13.31\", \"owed_amount\": \"0.00\", \"possible_delivery_methods\": \"\" } ]}}",
+				"_behaviors": {
+					"copy": [{
+                        "from": "body",
+                        "into": "${orderNum}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..order_num"
+                        }
+                    }]
+				}
+			},
+            {
+				"inject": "function () {return {body: [ { \"sc_id\": \"70881\", \"orig_purchase_datetime\": new Date().toISOString().replace('T',' ').replace('Z',''), \"order_num\": \"${orderNum}\", \"order_line_item\": \"3\", \"order_line_item_seq\": \"1\", \"event_name\": \"TFAST\", \"item_name_long\": \"Print at Home\", \"purchase_amount\": \"0.00\", \"owed_amount\": \"0.00\", \"possible_delivery_methods\": \"PH,TF,PM,PN\" }, { \"sc_id\": \"220754\", \"orig_purchase_datetime\": new Date().toISOString().replace('T',' ').replace('Z',''), \"order_num\": \"${orderNum}\", \"order_line_item\": \"2\", \"order_line_item_seq\": \"1\", \"event_name\": \"LXATI300\", \"item_name_long\": \"LX ATTRACTIONS $3.00 ZCI\", \"purchase_amount\": \"3.00\", \"owed_amount\": \"0.00\", \"possible_delivery_methods\": \"\" }, { \"sc_id\": \"220757\", \"orig_purchase_datetime\": new Date().toISOString().replace('T',' ').replace('Z',''), \"order_num\": \"${orderNum}\", \"order_line_item\": \"2\", \"order_line_item_seq\": \"1\", \"event_name\": \"LXATI300\", \"item_name_long\": \"LX ATTRACTIONS $3.00 ZCI\", \"purchase_amount\": \"3.00\", \"owed_amount\": \"0.00\", \"possible_delivery_methods\": \"\" } ]}}",
+				"_behaviors": {
+					"copy": [{
+                        "from": "body",
+                        "into": "${orderNum}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..order_num"
+                        }
+                    }]
+				}
+			},
+            {
+				"inject": "function () {return {body: [ { \"sc_id\": \"70881\", \"orig_purchase_datetime\": new Date().toISOString().replace('T',' ').replace('Z',''), \"order_num\": \"${orderNum}\", \"order_line_item\": \"3\", \"order_line_item_seq\": \"1\", \"event_name\": \"TFAST\", \"item_name_long\": \"Print at Home\", \"purchase_amount\": \"0.00\", \"owed_amount\": \"0.00\", \"possible_delivery_methods\": \"PH,TF,PM,PN\" }, { \"sc_id\": \"285529\", \"orig_purchase_datetime\": new Date().toISOString().replace('T',' ').replace('Z',''), \"order_num\": \"${orderNum}\", \"order_line_item\": \"2\", \"order_line_item_seq\": \"1\", \"event_name\": \"EXDMK872\", \"item_name_long\": \"EX MK $8.72 ZDD\", \"purchase_amount\": \"8.72\", \"owed_amount\": \"0.00\", \"possible_delivery_methods\": \"\" } ]}}",
+				"_behaviors": {
+					"copy": [{
+                        "from": "body",
+                        "into": "${orderNum}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..order_num"
+                        }
+                    }]
+				}
+			}]
+		},
+		{
+			"predicates": [{
+				"contains": {
+					"body": "customer_update"
+				}
+			}],
+			"responses": [{
+				"is": {
+					"headers": {
+						"Content-Type":"application/json"
+					},
+					"body": 
+							{
+							"header": {
+								"ats_version": "4.97.1",
+								"result": 0,
+								"ver": "${ver}",
+								"src_sys_type": "${SrcSysType}",
+								"src_sys_name": "${SrcSysName}",
+								"archtics_version": "${archticsVersion}"
+							},
+							"command1": {
+								"cmd": "customer_update",
+								"ref": "${REFID}",
+								"result": 0
+							}
+						}
+				},
+				"_behaviors": {
+					"copy": [{
+						"from": "body",
+						"into": "${REFID}",
+						"using":{
+                            "method":"jsonpath",
+                            "selector":"$..ref"
+                        }
+					},
+					{
+						"from": "body",
+						"into": "${ver}",
+						"using":{
+							"method":"jsonpath",
+							"selector":"$..ver"
+						}
+					},
+					{
+                        "from": "body",
+                        "into": "${SrcSysType}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..src_sys_type"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${SrcSysName}",
+                        "using":{
+                            "method":"jsonpath",
+                             "selector":"$..src_sys_name"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${archticsVersion}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..archtics_version"
+                        }
+                    }]
+				}
+			}]
+		},
+		{
+			"predicates": [{
+				"contains": {
+					"body": "abort_shopping_cart"
+				}
+			}],
+			"responses": [{
+				"is": {
+					"headers": {
+						"Content-Type":"application/json"
+					},
+					"body": 
+							{
+							"header": {
+								"ats_version": "4.97.1",
+								"result": 0,
+								"ver": "${ver}",
+								"src_sys_type": "${SrcSysType}",
+								"src_sys_name": "${SrcSysName}",
+								"archtics_version": "${archticsVersion}"
+							},
+							"command1": {
+								"cmd": "abort_shopping_cart",
+								"ref": "${REFID}",
+								"error_detail": "No seats held for input order number",
+								"result": 5053
+							}
+							}
+				},
+				"_behaviors": {
+					"copy": [{
+						"from": "body",
+						"into": "${REFID}",
+						"using":{
+                            "method":"jsonpath",
+                            "selector":"$..ref"
+                        }
+					},
+					{
+						"from": "body",
+						"into": "${ver}",
+						"using":{
+							"method":"jsonpath",
+							"selector":"$..ver"
+						}
+					},
+					{
+                        "from": "body",
+                        "into": "${SrcSysType}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..src_sys_type"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${SrcSysName}",
+                        "using":{
+                            "method":"jsonpath",
+                             "selector":"$..src_sys_name"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${archticsVersion}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..archtics_version"
+                        }
+                    }]
+				}
+			},
+			{
+				"is": {
+					"headers": {
+						"Content-Type":"application/json"
+					},
+					"body": 
+							{
+							"header": {
+								"ats_version": "4.97.1",
+								"result": 0,
+								"ver": "${ver}",
+								"src_sys_type": "${SrcSysType}",
+								"src_sys_name": "${SrcSysName}",
+								"archtics_version": "${archticsVersion}"
+							},
+							"command1": {
+								"cmd": "abort_shopping_cart",
+								"ref": "${REFID}",
+								"result": 0
+							}
+							}
+				},
+				"_behaviors": {
+					"copy": [{
+						"from": "body",
+						"into": "${REFID}",
+						"using":{
+                            "method":"jsonpath",
+                            "selector":"$..ref"
+                        }
+					},
+					{
+						"from": "body",
+						"into": "${ver}",
+						"using":{
+							"method":"jsonpath",
+							"selector":"$..ver"
+						}
+					},
+					{
+                        "from": "body",
+                        "into": "${SrcSysType}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..src_sys_type"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${SrcSysName}",
+                        "using":{
+                            "method":"jsonpath",
+                             "selector":"$..src_sys_name"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${archticsVersion}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..archtics_version"
+                        }
+                    }]
+				}
+			},
+			{
+				"is": {
+					"headers": {
+						"Content-Type":"application/json"
+					},
+					"body": 
+							{
+							"header": {
+								"src_sys_type": "${SrcSysType}",
+								"archtics_version": "${archticsVersion}",
+								"ver": "${ver}",
+								"src_sys_name": "${SrcSysName}",
+								"ats_version": "4.97.1",
+								"result": 0
+							},
+							"command1": {
+								"order_num_out": 0,
+								"cmd": "abort_shopping_cart",
+								"result": 0,
+								"ref": "${REFID}",
+								"sql_code": 0,
+								"return_count": 0
+							}
+							}
+				},
+				"_behaviors": {
+					"copy": [{
+						"from": "body",
+						"into": "${REFID}",
+						"using":{
+                            "method":"jsonpath",
+                            "selector":"$..ref"
+                        }
+					},
+					{
+						"from": "body",
+						"into": "${ver}",
+						"using":{
+							"method":"jsonpath",
+							"selector":"$..ver"
+						}
+					},
+					{
+                        "from": "body",
+                        "into": "${SrcSysType}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..src_sys_type"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${SrcSysName}",
+                        "using":{
+                            "method":"jsonpath",
+                             "selector":"$..src_sys_name"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${archticsVersion}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..archtics_version"
+                        }
+                    }]
+				}
+			}]
+		},
+		{
+			"predicates": [{
+				"contains": {
+					"body": "get_accounts_order_number"
+				}
+			}],
+			"responses": [{
+				"inject": "function () {return {body: [{\"acct_id\":Math.floor(Math.random() * 900000000) + 100000000}]}}"
+			}]
+		},
+		{
+			"predicates": [{
+				"contains": {
+					"body": "get_seats_on_account_non_expanded"
+				}
+			}],
+			"responses": [{
+				"inject": "function () {return {body: [ { \"event_name\": \"TID0627E\", \"section_name\": \"GA1\", \"row_name\": \"1\", \"seat_num\": 4, \"seat_increment\": 1, \"last_seat\": 4, \"event_date\": \"2023-06-27\", \"event_time\": \"19:00:00.000\", \"event_name_long\": \"Titanic at Luxor\", \"price_code\": \"A\", \"price_code_price\": \"32.00\", \"full_price\": \"32.00\", \"purchase_price\": \"32.00\", \"purchase_date\": \"2023-06-25 01:13:39.694\", \"printed_price\": \"32.00\", \"printed_datetime\": \"2023-06-25 01:13:44.714\", \"delivery_method\": \"TF\", \"delivery_method_name\": \"Ticket Fast\", \"paid_amount\": \"32.00\", \"block_full_price\": \"32.00\", \"block_purchase_price\": \"32.00\", \"hold_class\": \"OPEN\", \"ticket_type_code\": \"_A\", \"order_line_item\": 1, \"ticket_status\": \"Active\", \"plan_type\": \"N\", \"order_num\": Math.floor(Math.random() * 900000000) + 100000000 } ]}}"
+			},
+			{
+				"inject": "function () {return {body: [ { \"event_name\": \"RCD0625E\", \"section_name\": \"GA1\", \"row_name\": \"GA1\", \"seat_num\": 50, \"seat_increment\": 1, \"last_seat\": 50, \"event_date\": \"2023-06-25\", \"event_time\": \"10:00:00.000\", \"event_name_long\": \"NYNY Roller Coaster\", \"price_code\": \"A\", \"price_code_price\": \"19.00\", \"full_price\": \"19.00\", \"purchase_price\": \"19.00\", \"purchase_date\": \"2023-06-25 01:14:15.055\", \"printed_price\": \"19.00\", \"printed_datetime\": \"2023-06-25 01:14:19.927\", \"delivery_method\": \"TF\", \"delivery_method_name\": \"Ticket Fast\", \"paid_amount\": \"19.00\", \"block_full_price\": \"19.00\", \"block_purchase_price\": \"19.00\", \"hold_class\": \"OPEN\", \"ticket_type_code\": \"_A\", \"order_line_item\": 1, \"ticket_status\": \"Active\", \"plan_type\": \"N\", \"order_num\": Math.floor(Math.random() * 900000000) + 100000000 } ]}}"
+			},
+			{
+				"inject": "function () {return {body: [ { \"event_name\": \"DED0627E\", \"section_name\": \"SEC1\", \"row_name\": \"GA0\", \"seat_num\": 8, \"seat_increment\": 1, \"last_seat\": 8, \"event_date\": \"2023-06-27\", \"event_time\": \"23:00:00.000\", \"event_name_long\": \"4D Experience at Excalibur\", \"price_code\": \"AZ\", \"price_code_price\": \"12.00\", \"full_price\": \"12.00\", \"purchase_price\": \"12.00\", \"purchase_date\": \"2023-06-25 04:12:20.305\", \"printed_price\": \"12.00\", \"printed_datetime\": \"2023-06-25 04:12:29.898\", \"delivery_method\": \"TF\", \"delivery_method_name\": \"Ticket Fast\", \"paid_amount\": \"12.00\", \"block_full_price\": \"12.00\", \"block_purchase_price\": \"12.00\", \"hold_class\": \"OPEN\", \"ticket_type_code\": \"_A\", \"order_line_item\": 1, \"ticket_status\": \"Active\", \"plan_type\": \"N\", \"order_num\": Math.floor(Math.random() * 900000000) + 100000000 } ]}}"
+			},
+			{
+				"inject": "function () {return {body: [ { \"event_name\": \"THD0626E\", \"section_name\": \"BTH2\", \"row_name\": \"TBL\", \"seat_num\": 2, \"seat_increment\": 1, \"last_seat\": 2, \"event_date\": \"2023-06-26\", \"event_time\": \"21:00:00.000\", \"event_name_long\": \"Thunder From Down Under at Excalibur\", \"price_code\": \"BNEA\", \"price_code_price\": \"38.67\", \"full_price\": \"38.67\", \"purchase_price\": \"38.67\", \"purchase_date\": \"2023-06-25 04:12:26.191\", \"printed_price\": \"38.67\", \"printed_datetime\": \"2023-06-25 04:12:30.324\", \"delivery_method\": \"TF\", \"delivery_method_name\": \"Ticket Fast\", \"paid_amount\": \"38.67\", \"block_full_price\": \"38.67\", \"block_purchase_price\": \"38.67\", \"hold_class\": \"OPEN\", \"ticket_type_code\": \"_EA\", \"order_line_item\": 1, \"ticket_status\": \"Active\", \"plan_type\": \"N\", \"order_num\": Math.floor(Math.random() * 900000000) + 100000000 } ]}}"
+			},
+			{
+				"inject": "function () {return {body: [ { \"event_name\": \"MKD0627L\", \"section_name\": \"TBL2\", \"row_name\": \"TBL\", \"seat_num\": 1, \"seat_increment\": 1, \"last_seat\": 1, \"event_date\": \"2023-06-27\", \"event_time\": \"15:00:00.000\", \"event_name_long\": \"Mac King at Excalibur\", \"price_code\": \"AD5\", \"price_code_price\": \"29.95\", \"full_price\": \"29.95\", \"purchase_price\": \"29.95\", \"purchase_date\": \"2023-06-25 04:12:51.634\", \"printed_price\": \"29.95\", \"printed_datetime\": \"2023-06-25 04:12:56.732\", \"delivery_method\": \"TF\", \"delivery_method_name\": \"Ticket Fast\", \"paid_amount\": \"29.95\", \"block_full_price\": \"29.95\", \"block_purchase_price\": \"29.95\", \"hold_class\": \"ADA-COMPANION\", \"ticket_type_code\": \"_D5\", \"order_line_item\": 1, \"ticket_status\": \"Active\", \"plan_type\": \"N\", \"order_num\": Math.floor(Math.random() * 900000000) + 100000000 } ]}}"
+			},
+			{
+				"inject": "function () {return {body: [ { \"event_name\": \"TKD0626A\", \"section_name\": \"SPAI\", \"row_name\": \"A\", \"seat_num\": 11, \"seat_increment\": 1, \"last_seat\": 11, \"event_date\": \"2023-06-26\", \"event_time\": \"18:00:00.000\", \"event_name_long\": \"Tournament of Kings at Excalibur\", \"price_code\": \"BEA3\", \"price_code_price\": \"48.50\", \"full_price\": \"48.50\", \"purchase_price\": \"48.50\", \"purchase_date\": \"2023-06-25 04:12:59.909\", \"printed_price\": \"48.50\", \"printed_datetime\": \"2023-06-25 04:13:05.141\", \"delivery_method\": \"TF\", \"delivery_method_name\": \"Ticket Fast\", \"paid_amount\": \"48.50\", \"block_full_price\": \"48.50\", \"block_purchase_price\": \"48.50\", \"hold_class\": \"OPEN\", \"ticket_type_code\": \"_EA\", \"order_line_item\": 1, \"ticket_status\": \"Active\", \"plan_type\": \"N\", \"order_num\": Math.floor(Math.random() * 900000000) + 100000000 } ]}}"
+			},
+			{
+				"inject": "function () {return {body: [ { \"event_name\": \"ABD0625L\", \"section_name\": \"TBL10\", \"row_name\": \"TBL\", \"seat_num\": 6, \"seat_increment\": 1, \"last_seat\": 6, \"event_date\": \"2023-06-25\", \"event_time\": \"19:00:00.000\", \"event_name_long\": \"The Australian Bee Gees Show\", \"price_code\": \"BEA\", \"price_code_price\": \"33.22\", \"full_price\": \"33.22\", \"purchase_price\": \"33.22\", \"purchase_date\": \"2023-06-25 04:11:50.587\", \"printed_price\": \"33.22\", \"printed_datetime\": \"2023-06-25 04:11:55.655\", \"delivery_method\": \"TF\", \"delivery_method_name\": \"Ticket Fast\", \"paid_amount\": \"33.22\", \"block_full_price\": \"33.22\", \"block_purchase_price\": \"33.22\", \"hold_class\": \"OPEN\", \"ticket_type_code\": \"_EA\", \"order_line_item\": 1, \"ticket_status\": \"Active\", \"plan_type\": \"N\", \"order_num\": Math.floor(Math.random() * 900000000) + 100000000 } ]}}"
+			}]
+		},
+		{
+			"predicates": [{
+				"contains": {
+					"body": "event_price_info"
+				}
+			}],
+			"responses": [{
+				"is": {
+					"headers": {
+						"Content-Type":"application/json"
+					},
+					"body": 
+							{
+					"header": {
+						"ats_version": "4.97.1",
+						"result": 0,
+						"ver": "${ver}",
+						"src_sys_type": "${SrcSysType}",
+						"src_sys_name": "${SrcSysName}",
+						"archtics_version": "${archticsVersion}"
+					},
+					"command1": {
+						"pricing": [
+							{
+								"parent_price_code": "AN03",
+								"price_code_description": "Category A",
+								"color": 8388672,
+								"full_price": 75.06,
+								"min_tickets_per_tran": 1,
+								"max_tickets_per_tran": 999,
+								"total_avail_seats": 135,
+								"max_contig_seats": 14,
+								"ticket_type": [
+									{
+										"ticket_type_code": "_A",
+										"price": 75.06,
+										"pricing_method": "I",
+										"price_code": "AN03",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_5L",
+										"price": 56.19,
+										"pricing_method": "I",
+										"price_code": "A5L3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_EA",
+										"price": 50.74,
+										"pricing_method": "I",
+										"price_code": "AEA3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_EY",
+										"price": 21.4,
+										"pricing_method": "I",
+										"price_code": "AEY3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_F2",
+										"price": 56.19,
+										"pricing_method": "I",
+										"price_code": "AF23",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_F5",
+										"price": 61.64,
+										"pricing_method": "I",
+										"price_code": "AF53",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_G3",
+										"price": 61.64,
+										"pricing_method": "I",
+										"price_code": "AG33",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_GR",
+										"price": 56.19,
+										"pricing_method": "I",
+										"price_code": "AGR3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_J",
+										"price": 56.19,
+										"pricing_method": "I",
+										"price_code": "AJ3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_JG",
+										"price": 75.06,
+										"pricing_method": "I",
+										"price_code": "AJG3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_JL",
+										"price": 75.06,
+										"pricing_method": "I",
+										"price_code": "AJL3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_KF",
+										"price": 69.61,
+										"pricing_method": "I",
+										"price_code": "AKF3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_L0",
+										"price": 75.06,
+										"pricing_method": "I",
+										"price_code": "AL03",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_LF",
+										"price": 75.06,
+										"pricing_method": "I",
+										"price_code": "ALF3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_M",
+										"price": 61.64,
+										"pricing_method": "I",
+										"price_code": "AM3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_MR",
+										"price": 75.06,
+										"pricing_method": "I",
+										"price_code": "AMR3",
+										"access_indicator": "O"
+									}
+								],
+								"hold_class": [
+									{
+										"class_name": "OPEN",
+										"seat_qty": 119
+									},
+									{
+										"class_name": "ADA",
+										"seat_qty": 8
+									},
+									{
+										"class_name": "ADA-COMPANION",
+										"seat_qty": 8
+									}
+								]
+							},
+							{
+								"parent_price_code": "BN03",
+								"price_code_description": "Category B",
+								"color": 6340352,
+								"full_price": 72.66,
+								"min_tickets_per_tran": 1,
+								"max_tickets_per_tran": 999,
+								"total_avail_seats": 179,
+								"max_contig_seats": 18,
+								"ticket_type": [
+									{
+										"ticket_type_code": "_A",
+										"price": 72.66,
+										"pricing_method": "I",
+										"price_code": "BN03",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_5L",
+										"price": 53.95,
+										"pricing_method": "I",
+										"price_code": "B5L3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_AL",
+										"price": 49.84,
+										"pricing_method": "I",
+										"price_code": "BAL3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_EA",
+										"price": 48.5,
+										"pricing_method": "I",
+										"price_code": "BEA3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_EY",
+										"price": 21.4,
+										"pricing_method": "I",
+										"price_code": "BEY3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_F2",
+										"price": 53.95,
+										"pricing_method": "I",
+										"price_code": "BF23",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_F5",
+										"price": 59.4,
+										"pricing_method": "I",
+										"price_code": "BF53",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_G3",
+										"price": 59.4,
+										"pricing_method": "I",
+										"price_code": "BG33",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_GR",
+										"price": 53.95,
+										"pricing_method": "I",
+										"price_code": "BGR3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_J",
+										"price": 53.95,
+										"pricing_method": "I",
+										"price_code": "BJ3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_JG",
+										"price": 72.66,
+										"pricing_method": "I",
+										"price_code": "BJG3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_JL",
+										"price": 72.66,
+										"pricing_method": "I",
+										"price_code": "BJL3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_KF",
+										"price": 67.21,
+										"pricing_method": "I",
+										"price_code": "BKF3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_L0",
+										"price": 72.66,
+										"pricing_method": "I",
+										"price_code": "BL03",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_LF",
+										"price": 72.66,
+										"pricing_method": "I",
+										"price_code": "BLF3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_M",
+										"price": 59.4,
+										"pricing_method": "I",
+										"price_code": "BM3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_MR",
+										"price": 72.66,
+										"pricing_method": "I",
+										"price_code": "BMR3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_NM",
+										"price": 48.9,
+										"pricing_method": "I",
+										"price_code": "BNM3",
+										"access_indicator": "O"
+									}
+								],
+								"hold_class": [
+									{
+										"class_name": "OPEN",
+										"seat_qty": 164
+									},
+									{
+										"class_name": "ADA",
+										"seat_qty": 7
+									},
+									{
+										"class_name": "ADA-COMPANION",
+										"seat_qty": 8
+									}
+								]
+							},
+							{
+								"parent_price_code": "CN03",
+								"price_code_description": "Category C",
+								"color": 2026749,
+								"full_price": 69.15,
+								"min_tickets_per_tran": 1,
+								"max_tickets_per_tran": 999,
+								"total_avail_seats": 193,
+								"max_contig_seats": 17,
+								"ticket_type": [
+									{
+										"ticket_type_code": "_A",
+										"price": 69.15,
+										"pricing_method": "I",
+										"price_code": "CN03",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_5L",
+										"price": 50.68,
+										"pricing_method": "I",
+										"price_code": "C5L3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_A5",
+										"price": 44.21,
+										"pricing_method": "I",
+										"price_code": "CA53",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_EA",
+										"price": 45.23,
+										"pricing_method": "I",
+										"price_code": "CEA3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_EY",
+										"price": 21.4,
+										"pricing_method": "I",
+										"price_code": "CEY3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_F2",
+										"price": 50.68,
+										"pricing_method": "I",
+										"price_code": "CF23",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_F5",
+										"price": 56.13,
+										"pricing_method": "I",
+										"price_code": "CF53",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_G3",
+										"price": 56.13,
+										"pricing_method": "I",
+										"price_code": "CG33",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_GR",
+										"price": 50.68,
+										"pricing_method": "I",
+										"price_code": "CGR3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_H9",
+										"price": 44.22,
+										"pricing_method": "I",
+										"price_code": "CH93",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_J",
+										"price": 50.68,
+										"pricing_method": "I",
+										"price_code": "CJ3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_JG",
+										"price": 69.15,
+										"pricing_method": "I",
+										"price_code": "CJG3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_JL",
+										"price": 69.15,
+										"pricing_method": "I",
+										"price_code": "CJL3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_KF",
+										"price": 63.7,
+										"pricing_method": "I",
+										"price_code": "CKF3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_L0",
+										"price": 69.15,
+										"pricing_method": "I",
+										"price_code": "CL03",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_LF",
+										"price": 69.15,
+										"pricing_method": "I",
+										"price_code": "CLF3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_M",
+										"price": 56.13,
+										"pricing_method": "I",
+										"price_code": "CM3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_MR",
+										"price": 69.15,
+										"pricing_method": "I",
+										"price_code": "CMR3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_UA",
+										"price": 44.22,
+										"pricing_method": "I",
+										"price_code": "CUA3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_WG",
+										"price": 44.22,
+										"pricing_method": "I",
+										"price_code": "CWG3",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_X5",
+										"price": 69.15,
+										"pricing_method": "I",
+										"price_code": "CX53",
+										"access_indicator": "O"
+									},
+									{
+										"ticket_type_code": "_X8",
+										"price": 44.21,
+										"pricing_method": "I",
+										"price_code": "CX83",
+										"access_indicator": "O"
+									}
+								],
+								"hold_class": [
+									{
+										"class_name": "OPEN",
+										"seat_qty": 174
+									},
+									{
+										"class_name": "ADA",
+										"seat_qty": 10
+									},
+									{
+										"class_name": "ADA-COMPANION",
+										"seat_qty": 9
+									}
+								]
+							},
+							{
+									"parent_price_code": "AZ",
+									"price_code_description": "All Show Pass",
+									"color": 33023,
+									"full_price": 12.0,
+									"min_tickets_per_tran": 1,
+									"max_tickets_per_tran": 999,
+									"total_avail_seats": 141,
+									"max_contig_seats": 50,
+									"ticket_type": [
+										{
+											"ticket_type_code": "_A",
+											"price": 12.0,
+											"pricing_method": "I",
+											"price_code": "AZ",
+											"access_indicator": "O"
+										},
+										{
+											"ticket_type_code": "_LF",
+											"price": 12.0,
+											"pricing_method": "I",
+											"price_code": "AZLF",
+											"access_indicator": "O"
+										},
+										{
+											"ticket_type_code": "_QO",
+											"price": 9.0,
+											"pricing_method": "I",
+											"price_code": "AZQO",
+											"access_indicator": "O"
+										}
+									],
+									"hold_class": [
+										{
+											"class_name": "OPEN",
+											"seat_qty": 141
+										}
+									]
+							}
+						],
+						"ref": "${REFID}",
+						"cmd": "event_price_info",
+						"result": 0
+					}
+				}
+				},
+				"_behaviors": {
+					"copy": [{
+						"from": "body",
+						"into": "${REFID}",
+						"using":{
+                            "method":"jsonpath",
+                            "selector":"$..ref"
+                        }
+					},
+					{
+						"from": "body",
+						"into": "${ver}",
+						"using":{
+							"method":"jsonpath",
+							"selector":"$..ver"
+						}
+					},
+					{
+                        "from": "body",
+                        "into": "${SrcSysType}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..src_sys_type"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${SrcSysName}",
+                        "using":{
+                            "method":"jsonpath",
+                             "selector":"$..src_sys_name"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${archticsVersion}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..archtics_version"
+                        }
+                    }]
+				}
+			}]
+		},
+		{
+			"predicates": [{
+				"contains": {
+					"body": "get_event_manifest"
+				}
+			}],
+			"responses": [{
+				"is": {
+					"headers": {
+						"Content-Type":"application/json"
+					},
+					"body": 
+						{
+							"header": {
+								"ats_version": "4.97.1",
+								"result": 0,
+								"ver": "${ver}",
+								"src_sys_type": "${SrcSysType}",
+								"src_sys_name": "${SrcSysName}",
+								"archtics_version": "${archticsVersion}"
+							},
+							"command1": {
+								"manifest_retrieval_date": "2023-07-09 17:51:36",
+								"manifest": {
+									"sections": [
+										{
+											"section_name": "AUST"
+										},
+										{
+											"section_name": "DRAG"
+										},
+										{
+											"section_name": "FRAN"
+										},
+										{
+											"section_name": "GA"
+										},
+										{
+											"section_name": "HUNG"
+										},
+										{
+											"section_name": "IREL"
+										},
+										{
+											"section_name": "NORPC"
+										},
+										{
+											"section_name": "NORW"
+										},
+										{
+											"section_name": "ROMA"
+										},
+										{
+											"section_name": "ROMPC"
+										},
+										{
+											"section_name": "SPAI"
+										},
+										{
+											"section_name": "SPAPC"
+										}
+									]
+								},
+								"ref": "${REFID}",
+								"cmd": "get_event_manifest",
+								"result": 0,
+								"event_name": "TKD0715A"
+							}
+						}	
+				},
+				"_behaviors": {
+					"copy": [{
+						"from": "body",
+						"into": "${REFID}",
+						"using":{
+                            "method":"jsonpath",
+                            "selector":"$..ref"
+                        }
+					},
+					{
+						"from": "body",
+						"into": "${ver}",
+						"using":{
+							"method":"jsonpath",
+							"selector":"$..ver"
+						}
+					},
+					{
+                        "from": "body",
+                        "into": "${SrcSysType}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..src_sys_type"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${SrcSysName}",
+                        "using":{
+                            "method":"jsonpath",
+                             "selector":"$..src_sys_name"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${archticsVersion}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..archtics_version"
+                        }
+                    }]
+				}
+			},
+			{
+				"is": {
+					"headers": {
+						"Content-Type":"application/json"
+					},
+					"body": 
+						{
+							"header": {
+								"ats_version": "4.97.1",
+								"result": 0,
+								"ver": "${ver}",
+								"src_sys_type": "${SrcSysType}",
+								"src_sys_name": "${SrcSysName}",
+								"archtics_version": "${archticsVersion}"
+							},
+							"command1": {
+								"manifest_retrieval_date": "2023-07-09 01:10:03",
+								"manifest": {
+									"sections": [
+										{
+											"section_name": "SEC 5"
+										},
+										{
+											"section_name": "SEC 6"
+										},
+										{
+											"section_name": "SEC 7"
+										},
+										{
+											"section_name": "SEC 8"
+										},
+										{
+											"section_name": "SEC 9"
+										},
+										{
+											"section_name": "SEC1"
+										},
+										{
+											"section_name": "SEC2"
+										},
+										{
+											"section_name": "SEC3"
+										},
+										{
+											"section_name": "SEC4"
+										}
+									]
+								},
+								"ref": "${REFID}",
+								"cmd": "get_event_manifest",
+								"result": 0,
+								"event_name": "DED0710E"
+							}
+						}
+				},
+				"_behaviors": {
+					"copy": [{
+						"from": "body",
+						"into": "${REFID}",
+						"using":{
+                            "method":"jsonpath",
+                            "selector":"$..ref"
+                        }
+					},
+					{
+						"from": "body",
+						"into": "${ver}",
+						"using":{
+							"method":"jsonpath",
+							"selector":"$..ver"
+						}
+					},
+					{
+                        "from": "body",
+                        "into": "${SrcSysType}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..src_sys_type"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${SrcSysName}",
+                        "using":{
+                            "method":"jsonpath",
+                             "selector":"$..src_sys_name"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${archticsVersion}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..archtics_version"
+                        }
+                    }]
+				}
+			}]
+		},
+		{
+			"predicates": [{
+				"contains": {
+					"body": "get_avail_seats"
+				}
+			}],
+			"responses": [{
+				"is": {
+					"statusCode": 202,
+					"headers": {
+						"Content-Type":"application/json"
+					},
+					"body": 
+						{
+							"header": {
+								"ats_version": "4.97.1",
+								"result": 0,
+								"ver": "${ver}",
+								"src_sys_type": "${SrcSysType}",
+								"src_sys_name": "${SrcSysName}",
+								"archtics_version": "${archticsVersion}"
+							},
+							"command1": {
+								"manifest_retrieval_date": "2023-07-09 17:51:36",
+								"manifest_retrieval_required": "N",
+								"manifest": {
+									"section_details": [
+										{
+											"data": [
+												"AUST, E, 3, 17, 15, 1, OPEN, , BN03, 80, 2",
+												"AUST, D, 19, 35, 17, 1, OPEN, , BN03, 100, 3",
+												"AUST, D, 1, 18, 18, 1, OPEN, , BN03, 80, 3",
+												"AUST, E, 1, 2, 2, 1, EX KILL, , BN03, 80, 1",
+												"AUST, A, 10, 16, 7, 1, OPEN, , BN03, 100, 3",
+												"AUST, B, 14, 25, 12, 1, OPEN, , BN03, 100, 3",
+												"AUST, B, 1, 13, 13, 1, OPEN, , BN03, 80, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"DRAG, E, 19, 19, 1, 1, EX KILL, , AN03, 50, 2",
+												"DRAG, E, 20, 20, 1, 1, EX KILL, , AN03, 60, 1",
+												"DRAG, B, 1, 14, 14, 1, EX CASINO, , AN03, 20, 3",
+												"DRAG, B, 15, 18, 4, 1, EX PRODUCER, , AN03, 40, 1",
+												"DRAG, E, 21, 23, 3, 1, OPEN, , AN03, 60, 2",
+												"DRAG, E, 11, 18, 8, 1, OPEN, , AN03, 50, 1",
+												"DRAG, B, 19, 28, 10, 1, OPEN, , AN03, 40, 2",
+												"DRAG, A, 1, 14, 14, 1, OPEN, , AN03, 20, 3",
+												"DRAG, C, 1, 14, 14, 1, OPEN, , AN03, 20, 3",
+												"DRAG, C, 15, 28, 14, 1, OPEN, , AN03, 40, 3",
+												"DRAG, D, 1, 14, 14, 1, OPEN, , AN03, 20, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"FRAN, E, 17, 18, 2, 1, OPEN, , CN03, 180, 1",
+												"FRAN, E, 13, 16, 4, 1, OPEN, , CN03, 240, 3",
+												"FRAN, E, 21, 29, 9, 1, OPEN, , CN03, 170, 3",
+												"FRAN, E, 1, 12, 12, 1, OPEN, , CN03, 230, 3",
+												"FRAN, B, 5, 9, 5, 1, OPEN, , CN03, 160, 1",
+												"FRAN, C, 12, 25, 14, 1, OPEN, , CN03, 160, 3",
+												"FRAN, B, 11, 18, 8, 1, OPEN, , CN03, 160, 2",
+												"FRAN, E, 19, 20, 2, 1, EX KILL, , CN03, 180, 2",
+												"FRAN, B, 1, 4, 4, 1, EX GV TIMESHARE, , CN03, 220, 3",
+												"FRAN, C, 1, 11, 11, 1, EX GV TIMESHARE, , CN03, 220, 3",
+												"FRAN, D, 1, 17, 17, 1, EX GV TIMESHARE, , CN03, 220, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"HUNG, E, 7, 13, 7, 1, OPEN, , CN03, 150, 2",
+												"HUNG, C, 1, 14, 14, 1, OPEN, , CN03, 150, 3",
+												"HUNG, E, 5, 6, 2, 1, EX KILL, , CN03, 150, 1",
+												"HUNG, B, 1, 14, 14, 1, EX GV TIMESHARE, , CN03, 150, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"IREL, E, 14, 15, 2, 1, OPEN, , CN03, 200, 1",
+												"IREL, C, 15, 24, 10, 1, OPEN, , CN03, 190, 3",
+												"IREL, A, 1, 14, 14, 1, OPEN, , CN03, 120, 3",
+												"IREL, B, 1, 14, 14, 1, OPEN, , CN03, 120, 3",
+												"IREL, D, 1, 14, 14, 1, OPEN, , CN03, 120, 3",
+												"IREL, D, 15, 31, 17, 1, OPEN, , CN03, 190, 3",
+												"IREL, E, 2, 2, 1, 1, ADA-COMPANION, , CN03, 130, 0",
+												"IREL, E, 7, 7, 1, 1, ADA-COMPANION, , CN03, 130, 0",
+												"IREL, E, 9, 9, 1, 1, ADA-COMPANION, , CN03, 130, 2",
+												"IREL, E, 12, 12, 1, 1, ADA-COMPANION, , CN03, 140, 0",
+												"IREL, E, 4, 5, 2, 1, ADA-COMPANION, , CN03, 130, 0",
+												"IREL, E, 10, 10, 1, 1, EX OBSTRUCTED, , CN03, 140, 1",
+												"IREL, E, 1, 1, 1, 1, ADA, , CN03, 130, 1",
+												"IREL, E, 3, 3, 1, 1, ADA, , CN03, 130, 0",
+												"IREL, E, 6, 6, 1, 1, ADA, , CN03, 130, 0",
+												"IREL, E, 8, 8, 1, 1, ADA, , CN03, 130, 0",
+												"IREL, E, 11, 11, 1, 1, ADA, , CN03, 140, 0",
+												"IREL, E, 13, 13, 1, 1, ADA, , CN03, 140, 2",
+												"IREL, E, 16, 17, 2, 1, EX KILL, , CN03, 200, 2",
+												"IREL, B, 15, 18, 4, 1, EX GV TIMESHARE, , CN03, 190, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"NORPC, E, 10, 12, 3, 1, EX KILL, , CN03, 330, 3",
+												"NORPC, E, 1, 6, 6, 1, EX KILL, , CN03, 340, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"NORW, A, 1, 14, 14, 1, OPEN, , CN03, 110, 3",
+												"NORW, D, 1, 14, 14, 1, OPEN, , CN03, 110, 3",
+												"NORW, E, 2, 2, 1, 1, ADA-COMPANION, , CN03, 100, 0",
+												"NORW, E, 4, 4, 1, 1, ADA-COMPANION, , CN03, 100, 0",
+												"NORW, E, 11, 11, 1, 1, ADA-COMPANION, , CN03, 100, 0",
+												"NORW, C, 1, 14, 14, 1, MYVEGAS, , CN03, 110, 3",
+												"NORW, E, 5, 6, 2, 1, EX OBSTRUCTED, , CN03, 100, 2",
+												"NORW, E, 1, 1, 1, 1, ADA, , CN03, 100, 1",
+												"NORW, E, 3, 3, 1, 1, ADA, , CN03, 100, 0",
+												"NORW, E, 10, 10, 1, 1, ADA, , CN03, 100, 1",
+												"NORW, E, 12, 12, 1, 1, ADA, , CN03, 100, 2",
+												"NORW, B, 1, 14, 14, 1, EX CASINO, , CN03, 110, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"ROMA, E, 2, 2, 1, 1, ADA-COMPANION, , AN03, 30, 0",
+												"ROMA, E, 6, 6, 1, 1, ADA-COMPANION, , AN03, 30, 0",
+												"ROMA, E, 8, 8, 1, 1, ADA-COMPANION, , AN03, 30, 0",
+												"ROMA, E, 15, 15, 1, 1, ADA-COMPANION, , AN03, 30, 0",
+												"ROMA, E, 20, 20, 1, 1, ADA-COMPANION, , AN03, 30, 0",
+												"ROMA, E, 22, 22, 1, 1, ADA-COMPANION, , AN03, 30, 0",
+												"ROMA, E, 17, 18, 2, 1, ADA-COMPANION, , AN03, 30, 0",
+												"ROMA, E, 23, 23, 1, 1, EX OBSTRUCTED, , AN03, 30, 2",
+												"ROMA, E, 1, 1, 1, 1, ADA, , AN03, 30, 1",
+												"ROMA, E, 5, 5, 1, 1, ADA, , AN03, 30, 1",
+												"ROMA, E, 7, 7, 1, 1, ADA, , AN03, 30, 0",
+												"ROMA, E, 9, 9, 1, 1, ADA, , AN03, 30, 2",
+												"ROMA, E, 14, 14, 1, 1, ADA, , AN03, 30, 1",
+												"ROMA, E, 16, 16, 1, 1, ADA, , AN03, 30, 0",
+												"ROMA, E, 19, 19, 1, 1, ADA, , AN03, 30, 0",
+												"ROMA, E, 21, 21, 1, 1, ADA, , AN03, 30, 0",
+												"ROMA, E, 3, 4, 2, 1, EX KILL, , AN03, 30, 2",
+												"ROMA, B, 9, 14, 6, 1, EX TROUBLE, , AN03, 10, 2",
+												"ROMA, B, 15, 28, 14, 1, EX CASINO, , AN03, 30, 3",
+												"ROMA, A, 15, 28, 14, 1, OPEN, , AN03, 30, 3",
+												"ROMA, D, 1, 14, 14, 1, OPEN, , AN03, 10, 3",
+												"ROMA, D, 15, 28, 14, 1, OPEN, , AN03, 30, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"ROMPC, E, 1, 4, 4, 1, EX KILL, , AN03, 310, 3",
+												"ROMPC, E, 5, 9, 5, 1, EX KILL, , AN03, 300, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"SPAI, C, 1, 14, 14, 1, OPEN, , BN03, 90, 3",
+												"SPAI, C, 15, 30, 16, 1, OPEN, , BN03, 70, 3",
+												"SPAI, D, 1, 18, 18, 1, OPEN, , BN03, 90, 3",
+												"SPAI, E, 1, 18, 18, 1, OPEN, , BN03, 90, 3",
+												"SPAI, E, 20, 20, 1, 1, ADA-COMPANION, , BN03, 70, 0",
+												"SPAI, E, 22, 22, 1, 1, ADA-COMPANION, , BN03, 70, 0",
+												"SPAI, E, 24, 24, 1, 1, ADA-COMPANION, , BN03, 70, 0",
+												"SPAI, E, 29, 29, 1, 1, ADA-COMPANION, , BN03, 70, 0",
+												"SPAI, PCE, 31, 31, 1, 1, ADA-COMPANION, , BN03, 100, 1",
+												"SPAI, PCE, 33, 33, 1, 1, ADA-COMPANION, , BN03, 100, 0",
+												"SPAI, E, 26, 27, 2, 1, ADA-COMPANION, , BN03, 70, 0",
+												"SPAI, PCE, 34, 36, 3, 1, EX OBSTRUCTED, , BN03, 100, 2",
+												"SPAI, E, 19, 19, 1, 1, ADA, , BN03, 70, 1",
+												"SPAI, E, 21, 21, 1, 1, ADA, , BN03, 70, 0",
+												"SPAI, E, 23, 23, 1, 1, ADA, , BN03, 70, 0",
+												"SPAI, E, 25, 25, 1, 1, ADA, , BN03, 70, 0",
+												"SPAI, E, 28, 28, 1, 1, ADA, , BN03, 70, 0",
+												"SPAI, E, 30, 30, 1, 1, ADA, , BN03, 70, 2",
+												"SPAI, PCE, 32, 32, 1, 1, ADA, , BN03, 100, 0",
+												"SPAI, B, 1, 12, 12, 1, EX CASINO, , BN03, 90, 3",
+												"SPAI, A, 8, 16, 9, 1, OPEN, , BN03, 70, 3",
+												"SPAI, A, 1, 7, 7, 1, OPEN, , BN03, 90, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"SPAPC, E, 31, 36, 6, 1, EX KILL, , BN03, 320, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										}
+									]
+								},
+								"ref": "${REFID}",
+								"cmd": "get_avail_seats",
+								"result": 0,
+								"event_name": "TKD0715A"
+							}
+						}
+				},
+				"_behaviors": {
+					"copy": [{
+						"from": "body",
+						"into": "${REFID}",
+						"using":{
+                            "method":"jsonpath",
+                            "selector":"$..ref"
+                        }
+					},
+					{
+						"from": "body",
+						"into": "${ver}",
+						"using":{
+							"method":"jsonpath",
+							"selector":"$..ver"
+						}
+					},
+					{
+                        "from": "body",
+                        "into": "${SrcSysType}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..src_sys_type"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${SrcSysName}",
+                        "using":{
+                            "method":"jsonpath",
+                             "selector":"$..src_sys_name"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${archticsVersion}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..archtics_version"
+                        }
+                    }]
+				}
+			},
+			{
+				"is": {
+					"headers": {
+						"Content-Type":"application/json"
+					},
+					"body": 
+						{
+							"header": {
+								"ats_version": "4.97.1",
+								"result": 0,
+								"ver": "${ver}",
+								"src_sys_type": "${SrcSysType}",
+								"src_sys_name": "${SrcSysName}",
+								"archtics_version": "${archticsVersion}"
+							},
+							"command1": {
+								"manifest_retrieval_date": "2023-07-09 17:51:36",
+								"manifest_retrieval_required": "N",
+								"manifest": {
+									"section_details": [
+										{
+											"data": [
+												"AUST, E, 3, 17, 15, 1, OPEN, , BN03, 80, 2",
+												"AUST, D, 19, 35, 17, 1, OPEN, , BN03, 100, 3",
+												"AUST, D, 1, 18, 18, 1, OPEN, , BN03, 80, 3",
+												"AUST, E, 1, 2, 2, 1, EX KILL, , BN03, 80, 1",
+												"AUST, A, 10, 16, 7, 1, OPEN, , BN03, 100, 3",
+												"AUST, B, 14, 25, 12, 1, OPEN, , BN03, 100, 3",
+												"AUST, B, 1, 13, 13, 1, OPEN, , BN03, 80, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"DRAG, E, 19, 19, 1, 1, EX KILL, , AN03, 50, 2",
+												"DRAG, E, 20, 20, 1, 1, EX KILL, , AN03, 60, 1",
+												"DRAG, B, 1, 14, 14, 1, EX CASINO, , AN03, 20, 3",
+												"DRAG, B, 15, 18, 4, 1, EX PRODUCER, , AN03, 40, 1",
+												"DRAG, E, 21, 23, 3, 1, OPEN, , AN03, 60, 2",
+												"DRAG, E, 11, 18, 8, 1, OPEN, , AN03, 50, 1",
+												"DRAG, B, 19, 28, 10, 1, OPEN, , AN03, 40, 2",
+												"DRAG, A, 1, 14, 14, 1, OPEN, , AN03, 20, 3",
+												"DRAG, C, 1, 14, 14, 1, OPEN, , AN03, 20, 3",
+												"DRAG, C, 15, 28, 14, 1, OPEN, , AN03, 40, 3",
+												"DRAG, D, 1, 14, 14, 1, OPEN, , AN03, 20, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"FRAN, E, 17, 18, 2, 1, OPEN, , CN03, 180, 1",
+												"FRAN, E, 13, 16, 4, 1, OPEN, , CN03, 240, 3",
+												"FRAN, E, 21, 29, 9, 1, OPEN, , CN03, 170, 3",
+												"FRAN, E, 1, 12, 12, 1, OPEN, , CN03, 230, 3",
+												"FRAN, B, 5, 9, 5, 1, OPEN, , CN03, 160, 1",
+												"FRAN, C, 12, 25, 14, 1, OPEN, , CN03, 160, 3",
+												"FRAN, B, 11, 18, 8, 1, OPEN, , CN03, 160, 2",
+												"FRAN, E, 19, 20, 2, 1, EX KILL, , CN03, 180, 2",
+												"FRAN, B, 1, 4, 4, 1, EX GV TIMESHARE, , CN03, 220, 3",
+												"FRAN, C, 1, 11, 11, 1, EX GV TIMESHARE, , CN03, 220, 3",
+												"FRAN, D, 1, 17, 17, 1, EX GV TIMESHARE, , CN03, 220, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"HUNG, E, 7, 13, 7, 1, OPEN, , CN03, 150, 2",
+												"HUNG, C, 1, 14, 14, 1, OPEN, , CN03, 150, 3",
+												"HUNG, E, 5, 6, 2, 1, EX KILL, , CN03, 150, 1",
+												"HUNG, B, 1, 14, 14, 1, EX GV TIMESHARE, , CN03, 150, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"IREL, E, 14, 15, 2, 1, OPEN, , CN03, 200, 1",
+												"IREL, C, 15, 24, 10, 1, OPEN, , CN03, 190, 3",
+												"IREL, A, 1, 14, 14, 1, OPEN, , CN03, 120, 3",
+												"IREL, B, 1, 14, 14, 1, OPEN, , CN03, 120, 3",
+												"IREL, D, 1, 14, 14, 1, OPEN, , CN03, 120, 3",
+												"IREL, D, 15, 31, 17, 1, OPEN, , CN03, 190, 3",
+												"IREL, E, 2, 2, 1, 1, ADA-COMPANION, , CN03, 130, 0",
+												"IREL, E, 7, 7, 1, 1, ADA-COMPANION, , CN03, 130, 0",
+												"IREL, E, 9, 9, 1, 1, ADA-COMPANION, , CN03, 130, 2",
+												"IREL, E, 12, 12, 1, 1, ADA-COMPANION, , CN03, 140, 0",
+												"IREL, E, 4, 5, 2, 1, ADA-COMPANION, , CN03, 130, 0",
+												"IREL, E, 10, 10, 1, 1, EX OBSTRUCTED, , CN03, 140, 1",
+												"IREL, E, 1, 1, 1, 1, ADA, , CN03, 130, 1",
+												"IREL, E, 3, 3, 1, 1, ADA, , CN03, 130, 0",
+												"IREL, E, 6, 6, 1, 1, ADA, , CN03, 130, 0",
+												"IREL, E, 8, 8, 1, 1, ADA, , CN03, 130, 0",
+												"IREL, E, 11, 11, 1, 1, ADA, , CN03, 140, 0",
+												"IREL, E, 13, 13, 1, 1, ADA, , CN03, 140, 2",
+												"IREL, E, 16, 17, 2, 1, EX KILL, , CN03, 200, 2",
+												"IREL, B, 15, 18, 4, 1, EX GV TIMESHARE, , CN03, 190, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"NORPC, E, 10, 12, 3, 1, EX KILL, , CN03, 330, 3",
+												"NORPC, E, 1, 6, 6, 1, EX KILL, , CN03, 340, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"NORW, A, 1, 14, 14, 1, OPEN, , CN03, 110, 3",
+												"NORW, D, 1, 14, 14, 1, OPEN, , CN03, 110, 3",
+												"NORW, E, 2, 2, 1, 1, ADA-COMPANION, , CN03, 100, 0",
+												"NORW, E, 4, 4, 1, 1, ADA-COMPANION, , CN03, 100, 0",
+												"NORW, E, 11, 11, 1, 1, ADA-COMPANION, , CN03, 100, 0",
+												"NORW, C, 1, 14, 14, 1, MYVEGAS, , CN03, 110, 3",
+												"NORW, E, 5, 6, 2, 1, EX OBSTRUCTED, , CN03, 100, 2",
+												"NORW, E, 1, 1, 1, 1, ADA, , CN03, 100, 1",
+												"NORW, E, 3, 3, 1, 1, ADA, , CN03, 100, 0",
+												"NORW, E, 10, 10, 1, 1, ADA, , CN03, 100, 1",
+												"NORW, E, 12, 12, 1, 1, ADA, , CN03, 100, 2",
+												"NORW, B, 1, 14, 14, 1, EX CASINO, , CN03, 110, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"ROMA, E, 2, 2, 1, 1, ADA-COMPANION, , AN03, 30, 0",
+												"ROMA, E, 6, 6, 1, 1, ADA-COMPANION, , AN03, 30, 0",
+												"ROMA, E, 8, 8, 1, 1, ADA-COMPANION, , AN03, 30, 0",
+												"ROMA, E, 15, 15, 1, 1, ADA-COMPANION, , AN03, 30, 0",
+												"ROMA, E, 20, 20, 1, 1, ADA-COMPANION, , AN03, 30, 0",
+												"ROMA, E, 22, 22, 1, 1, ADA-COMPANION, , AN03, 30, 0",
+												"ROMA, E, 17, 18, 2, 1, ADA-COMPANION, , AN03, 30, 0",
+												"ROMA, E, 23, 23, 1, 1, EX OBSTRUCTED, , AN03, 30, 2",
+												"ROMA, E, 1, 1, 1, 1, ADA, , AN03, 30, 1",
+												"ROMA, E, 5, 5, 1, 1, ADA, , AN03, 30, 1",
+												"ROMA, E, 7, 7, 1, 1, ADA, , AN03, 30, 0",
+												"ROMA, E, 9, 9, 1, 1, ADA, , AN03, 30, 2",
+												"ROMA, E, 14, 14, 1, 1, ADA, , AN03, 30, 1",
+												"ROMA, E, 16, 16, 1, 1, ADA, , AN03, 30, 0",
+												"ROMA, E, 19, 19, 1, 1, ADA, , AN03, 30, 0",
+												"ROMA, E, 21, 21, 1, 1, ADA, , AN03, 30, 0",
+												"ROMA, E, 3, 4, 2, 1, EX KILL, , AN03, 30, 2",
+												"ROMA, B, 9, 14, 6, 1, EX TROUBLE, , AN03, 10, 2",
+												"ROMA, B, 15, 28, 14, 1, EX CASINO, , AN03, 30, 3",
+												"ROMA, A, 15, 28, 14, 1, OPEN, , AN03, 30, 3",
+												"ROMA, D, 1, 14, 14, 1, OPEN, , AN03, 10, 3",
+												"ROMA, D, 15, 28, 14, 1, OPEN, , AN03, 30, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"ROMPC, E, 1, 4, 4, 1, EX KILL, , AN03, 310, 3",
+												"ROMPC, E, 5, 9, 5, 1, EX KILL, , AN03, 300, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"SPAI, C, 1, 14, 14, 1, OPEN, , BN03, 90, 3",
+												"SPAI, C, 15, 30, 16, 1, OPEN, , BN03, 70, 3",
+												"SPAI, D, 1, 18, 18, 1, OPEN, , BN03, 90, 3",
+												"SPAI, E, 1, 18, 18, 1, OPEN, , BN03, 90, 3",
+												"SPAI, E, 20, 20, 1, 1, ADA-COMPANION, , BN03, 70, 0",
+												"SPAI, E, 22, 22, 1, 1, ADA-COMPANION, , BN03, 70, 0",
+												"SPAI, E, 24, 24, 1, 1, ADA-COMPANION, , BN03, 70, 0",
+												"SPAI, E, 29, 29, 1, 1, ADA-COMPANION, , BN03, 70, 0",
+												"SPAI, PCE, 31, 31, 1, 1, ADA-COMPANION, , BN03, 100, 1",
+												"SPAI, PCE, 33, 33, 1, 1, ADA-COMPANION, , BN03, 100, 0",
+												"SPAI, E, 26, 27, 2, 1, ADA-COMPANION, , BN03, 70, 0",
+												"SPAI, PCE, 34, 36, 3, 1, EX OBSTRUCTED, , BN03, 100, 2",
+												"SPAI, E, 19, 19, 1, 1, ADA, , BN03, 70, 1",
+												"SPAI, E, 21, 21, 1, 1, ADA, , BN03, 70, 0",
+												"SPAI, E, 23, 23, 1, 1, ADA, , BN03, 70, 0",
+												"SPAI, E, 25, 25, 1, 1, ADA, , BN03, 70, 0",
+												"SPAI, E, 28, 28, 1, 1, ADA, , BN03, 70, 0",
+												"SPAI, E, 30, 30, 1, 1, ADA, , BN03, 70, 2",
+												"SPAI, PCE, 32, 32, 1, 1, ADA, , BN03, 100, 0",
+												"SPAI, B, 1, 12, 12, 1, EX CASINO, , BN03, 90, 3",
+												"SPAI, A, 8, 16, 9, 1, OPEN, , BN03, 70, 3",
+												"SPAI, A, 1, 7, 7, 1, OPEN, , BN03, 90, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"SPAPC, E, 31, 36, 6, 1, EX KILL, , BN03, 320, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"GA1, 1, 21, 50, 30, 1, OPEN, 1, A, 10, 2",
+												"GA1, 2, 1, 50, 50, 1, OPEN, 1, A, 10, 3",
+												"GA1, 3, 1, 50, 50, 1, OPEN, 1, A, 10, 3",
+												"GA1, 4, 1, 50, 50, 1, OPEN, 1, A, 10, 3",
+												"GA1, 5, 1, 50, 50, 1, OPEN, 1, A, 10, 3",
+												"GA1, 6, 1, 50, 50, 1, OPEN, 1, A, 10, 3",
+												"GA1, 7, 1, 50, 50, 1, OPEN, 1, A, 10, 3",
+												"GA1, 8, 1, 50, 50, 1, OPEN, 1, A, 10, 3",
+												"GA1, 9, 1, 50, 50, 1, OPEN, 1, A, 10, 3",
+												"GA1, 10, 1, 50, 50, 1, OPEN, 1, A, 10, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"GA2, 3, 21, 50, 30, 1, OPEN, 1, A, 20, 2",
+												"GA2, 4, 1, 50, 50, 1, OPEN, 1, A, 20, 3",
+												"GA2, 5, 1, 50, 50, 1, OPEN, 1, A, 20, 3",
+												"GA2, 6, 1, 50, 50, 1, OPEN, 1, A, 20, 3",
+												"GA2, 7, 1, 50, 50, 1, OPEN, 1, A, 20, 3",
+												"GA2, 8, 1, 50, 50, 1, OPEN, 1, A, 20, 3",
+												"GA2, 9, 1, 50, 50, 1, OPEN, 1, A, 20, 3",
+												"GA2, 10, 1, 50, 50, 1, OPEN, 1, A, 20, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"BTH2, TBL, 3, 4, 2, 1, OPEN, 2, BN, 180, 2"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"BTH5, TBL, 3, 4, 2, 1, OPEN, 2, BN, 170, 2"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"BTH6, TBL, 3, 4, 2, 1, OPEN, 2, BN, 190, 2"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"CIRT10, TBL, 1, 2, 2, 1, OPEN, 4, DN, 460, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"CIRT11, TBL, 1, 2, 2, 1, OPEN, 4, DN, 470, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"CIRT2, TBL, 1, 2, 2, 1, OPEN, 4, DN, 380, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"CIRT4, TBL, 1, 2, 2, 1, OPEN, 4, DN, 400, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"CIRT5, TBL, 1, 2, 2, 1, OPEN, 4, DN, 410, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"CIRT6, TBL, 1, 2, 2, 1, OPEN, 4, DN, 420, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"CIRT8, TBL, 1, 2, 2, 1, OPEN, 4, DN, 440, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"CIRT9, TBL, 1, 2, 2, 1, OPEN, 4, DN, 450, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL1, TBL, 1, 14, 14, 1, OPEN, 1, AN, 2180, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL11, TBL, 1, 8, 8, 1, OPEN, 1, AN, 60, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL13, TBL, 1, 12, 12, 1, OPEN, 1, AN, 90, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL14, TBL, 1, 10, 10, 1, OPEN, 1, AN, 2170, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL15, TBL, 7, 13, 7, 1, OPEN, 2, BN, 210, 2"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL19, TBL, 1, 13, 13, 1, OPEN, 4, DN, 350, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL2, TBL, 1, 1, 1, 1, ADA, 1, AN, 40, 1",
+												"TBL2, TBL, 3, 3, 1, 1, ADA, 1, AN, 40, 0",
+												"TBL2, TBL, 4, 4, 1, 1, ADA-COMPANION, 1, AN, 40, 0",
+												"TBL2, TBL, 2, 2, 1, 1, ADA-COMPANION, 1, AN, 40, 0"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL20, TBL, 9, 19, 11, 1, OPEN, 3, CN, 260, 2"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL21, TBL, 1, 17, 17, 1, OPEN, 3, CN, 280, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL23, TBL, 1, 14, 14, 1, OPEN, 3, CN, 320, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL24, TBL, 9, 9, 1, 1, ADA, 3, CN, 340, 0",
+												"TBL24, TBL, 7, 7, 1, 1, ADA, 3, CN, 340, 0",
+												"TBL24, TBL, 8, 8, 1, 1, ADA-COMPANION, 3, CN, 340, 0",
+												"TBL24, TBL, 10, 10, 1, 1, ADA-COMPANION, 3, CN, 340, 2"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL25, TBL, 3, 9, 7, 1, OPEN, 2, BN, 2200, 2"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL26, TBL, 13, 13, 1, 1, ADA, 2, BN, 2210, 0",
+												"TBL26, TBL, 11, 11, 1, 1, ADA, 2, BN, 2210, 0",
+												"TBL26, TBL, 12, 12, 1, 1, ADA-COMPANION, 2, BN, 2210, 0",
+												"TBL26, TBL, 14, 14, 1, 1, ADA-COMPANION, 2, BN, 2210, 2",
+												"TBL26, TBL, 7, 10, 4, 1, OPEN, 2, BN, 2210, 0"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL27, TBL, 1, 5, 5, 1, OPEN, 3, CN, 330, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL29, TBL, 1, 13, 13, 1, OPEN, 3, CN, 290, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL3, TBL, 1, 12, 12, 1, OPEN, 1, AN, 20, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL30, TBL, 11, 14, 4, 1, OPEN, 3, CN, 270, 2"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL31, TBL, 3, 3, 1, 1, ADA, 4, DN, 360, 0",
+												"TBL31, TBL, 1, 1, 1, 1, ADA, 4, DN, 360, 1",
+												"TBL31, TBL, 2, 2, 1, 1, ADA-COMPANION, 4, DN, 360, 0",
+												"TBL31, TBL, 4, 4, 1, 1, ADA-COMPANION, 4, DN, 360, 0"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL4, TBL, 2, 10, 9, 1, OPEN, 1, AN, 10, 2"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL5, TBL, 1, 12, 12, 1, OPEN, 1, AN, 30, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL6, TBL, 1, 14, 14, 1, OPEN, 1, AN, 50, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL7, TBL, 1, 14, 14, 1, OPEN, 1, AN, 2160, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL8, TBL, 7, 10, 4, 1, OPEN, 1, AN, 2190, 2"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"SEC1, GA0, 28, 50, 23, 1, OPEN, 4, AZ, 100, 2"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"SEC2, GA0, 1, 50, 50, 1, OPEN, 4, AZ, 100, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"SEC4, GA1, 1, 30, 30, 1, OPEN, 4, AZ, 100, 1",
+												"SEC4, GA0, 1, 25, 25, 1, OPEN, 4, AZ, 100, 1",
+												"SEC4, GA0, 46, 50, 5, 1, OPEN, 4, AZ, 100, 2"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"SEC1, GA0, 3, 50, 48, 1, OPEN, 4, AZ, 100, 2"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"BTH2, TBL, 1, 4, 4, 1, OPEN, 1, A, 180, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"BTH5, TBL, 1, 4, 4, 1, OPEN, 1, A, 170, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"CIRT10, TBL, 1, 2, 2, 1, OPEN, 2, B, 460, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"CIRT11, TBL, 1, 2, 2, 1, OPEN, 2, B, 470, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"CIRT2, TBL, 1, 2, 2, 1, OPEN, 2, B, 380, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"CIRT3, TBL, 1, 2, 2, 1, OPEN, 2, B, 390, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"CIRT5, TBL, 1, 2, 2, 1, OPEN, 2, B, 410, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"CIRT6, TBL, 1, 2, 2, 1, OPEN, 2, B, 420, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"CIRT8, TBL, 1, 2, 2, 1, OPEN, 2, B, 440, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"CIRT9, TBL, 1, 2, 2, 1, OPEN, 2, B, 450, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL1, TBL, 1, 14, 14, 1, OPEN, 1, A, 110, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL11, TBL, 7, 8, 2, 1, OPEN, 1, A, 60, 2"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL13, TBL, 6, 12, 7, 1, OPEN, 1, A, 90, 2"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL14, TBL, 1, 10, 10, 1, OPEN, 1, A, 130, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL15, TBL, 1, 13, 13, 1, OPEN, 2, B, 210, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL16, TBL, 1, 1, 1, 1, OPEN, 2, B, 200, 1",
+												"TBL16, TBL, 3, 3, 1, 1, OPEN, 2, B, 200, 0",
+												"TBL16, TBL, 5, 11, 7, 1, OPEN, 2, B, 200, 2"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL19, TBL, 1, 13, 13, 1, OPEN, 2, B, 350, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL20, TBL, 1, 19, 19, 1, OPEN, 2, B, 260, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL21, TBL, 11, 17, 7, 1, OPEN, 2, B, 280, 2"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL22, TBL, 1, 14, 14, 1, OPEN, 2, B, 300, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL24, TBL, 9, 9, 1, 1, ADA, 2, B, 340, 0",
+												"TBL24, TBL, 10, 10, 1, 1, ADA-COMPANION, 2, B, 340, 2",
+												"TBL24, TBL, 7, 7, 1, 1, ADA, 2, B, 340, 0",
+												"TBL24, TBL, 8, 8, 1, 1, ADA-COMPANION, 2, B, 340, 0",
+												"TBL24, TBL, 1, 6, 6, 1, OPEN, 2, B, 340, 1"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL25, TBL, 1, 9, 9, 1, OPEN, 2, B, 250, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL27, TBL, 3, 3, 1, 1, ADA, 2, B, 330, 0",
+												"TBL27, TBL, 4, 4, 1, 1, ADA-COMPANION, 2, B, 330, 0",
+												"TBL27, TBL, 5, 5, 1, 1, ADA, 2, B, 330, 2",
+												"TBL27, TBL, 1, 1, 1, 1, ADA, 2, B, 330, 1",
+												"TBL27, TBL, 2, 2, 1, 1, ADA-COMPANION, 2, B, 330, 0"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL28, TBL, 1, 12, 12, 1, OPEN, 2, B, 310, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL29, TBL, 1, 13, 13, 1, OPEN, 2, B, 290, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL3, TBL, 11, 12, 2, 1, OPEN, 1, A, 20, 2"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL31, TBL, 2, 2, 1, 1, ADA, 2, B, 360, 0",
+												"TBL31, TBL, 4, 4, 1, 1, ADA, 2, B, 360, 0",
+												"TBL31, TBL, 5, 5, 1, 1, ADA-COMPANION, 2, B, 360, 0",
+												"TBL31, TBL, 6, 14, 9, 1, OPEN, 2, B, 360, 2"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL4, TBL, 9, 10, 2, 1, OPEN, 1, A, 10, 2"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL6, TBL, 13, 14, 2, 1, OPEN, 1, A, 50, 2"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL7, TBL, 1, 14, 14, 1, OPEN, 1, A, 120, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL8, TBL, 7, 10, 4, 1, OPEN, 1, A, 140, 2"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										},
+										{
+											"data": [
+												"TBL9, TBL, 1, 12, 12, 1, OPEN, 1, A, 100, 3"
+											],
+											"seat_header": "section_name, row_name,first_seat,last_seat,num_seats,seat_increment,class, price_level, price_code,quality,aisle_indicator"
+										}
+									]
+								},
+								"ref": "${REFID}",
+								"cmd": "get_avail_seats",
+								"result": 0,
+								"event_name": "${eventName}"
+							}
+						}
+				},
+				"_behaviors": {
+					"copy": [{
+						"from": "body",
+						"into": "${REFID}",
+						"using":{
+                            "method":"jsonpath",
+                            "selector":"$..ref"
+                        }
+					},
+					{
+						"from": "body",
+						"into": "${ver}",
+						"using":{
+							"method":"jsonpath",
+							"selector":"$..ver"
+						}
+					},
+					{
+                        "from": "body",
+                        "into": "${SrcSysType}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..src_sys_type"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${SrcSysName}",
+                        "using":{
+                            "method":"jsonpath",
+                             "selector":"$..src_sys_name"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${archticsVersion}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..archtics_version"
+                        }
+                    },
+					{
+                        "from": "body",
+                        "into": "${eventName}",
+                        "using":{
+                            "method":"jsonpath",
+                            "selector":"$..event_name"
+                        }
+                    }]
+				}
+			}]
+		}
+    ]
+}
