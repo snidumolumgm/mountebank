@@ -4,9 +4,7 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Install tarball to allow the command to be 'mb' instead of 'bin/mb'
-COPY mountebank-*.tgz ./
-RUN npm install --production -g mountebank-*.tgz && npm cache clean -f
+RUN npm install --production -g npm cache clean -f
 
 # Copy imposter file
 COPY imposter.ejs /tmp
