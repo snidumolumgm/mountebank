@@ -1,0 +1,146 @@
+{
+    "port": 4541, 
+    "protocol": "http", 
+    "stubs": [{
+        "predicates": [
+            { "equals": {"method": "POST" } },
+            { "equals": { "path": "/Freeway/Service.asmx" } },
+            {
+                "xpath": { 
+                    "ns" : {"s":"http://freeway.freedompay.com/"},
+                    "selector": "//s:Submit/s:request/s:ccAuthService[@run='true']"},
+                "exists": { "body": true },
+                "caseSensitive": true
+            }
+        ],
+        "responses": [{ 
+            "is": { 
+                "statusCode": 200,
+                "headers": {
+                    "Cache-Control": "private, max-age=0",
+                    "Content-Type": "text/xml; charset=utf-8",
+                    "Server": "Microsoft-IIS/8.5",
+                    "X-AspNet-Version": "4.0.30319",
+                    "X-Powered-By": "ASP.NET",
+                    "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+                    "Date": "Thu, 29 Jun 2023 16:43:44 GMT",
+                    "Content-Length": "1402"
+                },
+                "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soap:Body><SubmitResponse xmlns=\"http://freeway.freedompay.com/\"><SubmitResult><requestID>01Z6L4KJHV97U6DAVH2IHR0K7H33DEGB</requestID><ccAuthReply><authorizationCode>079544</authorizationCode><amount>123.58</amount><enhancedDataEnabled>N</enhancedDataEnabled><processorResponseMessage>APPROVED</processorResponseMessage><authorizedDateTime>$ADT</authorizedDateTime><processorResponseCode>100</processorResponseCode><reasonCode>100</reasonCode><processorTransactionID>190079544</processorTransactionID><authRequestID>01Z6L4KJHV97U6DAVH2IHR0K7H33DEGB</authRequestID><partialAmount>N</partialAmount><reconciliationID>190079544</reconciliationID><requestDateTime>$RDT</requestDateTime></ccAuthReply><decision>ACCEPT</decision><merchantReferenceCode>$MRC</merchantReferenceCode><tokenInformation><brand>MC</brand><cardExpirationMonth>$CEM</cardExpirationMonth><cardExpirationYear>$CEY</cardExpirationYear><accountNumberMasked>$AN</accountNumberMasked><cardType>credit</cardType></tokenInformation><reasonCode>100</reasonCode><networkData><network>FREEWAY</network></networkData></SubmitResult></SubmitResponse></soap:Body></soap:Envelope>" },
+            "_behaviors" : {
+                "copy" : [
+                    {"from":"body", "into":"$AN", "using":{"method":"xpath","ns":{"s":"http://freeway.freedompay.com/"}, "selector":"(//s:Submit/s:request/s:card/s:accountNumber)"}},
+                    {"from":"body", "into":"$CEY", "using":{"method":"xpath","ns":{"s":"http://freeway.freedompay.com/"}, "selector":"(//s:Submit/s:request/s:card/s:expirationYear)"}},
+                    {"from":"body", "into":"$CEM", "using":{"method":"xpath","ns":{"s":"http://freeway.freedompay.com/"}, "selector":"(//s:Submit/s:request/s:card/s:expirationMonth)"}},
+                    {"from":"body", "into":"$MRC", "using":{"method":"xpath","ns":{"s":"http://freeway.freedompay.com/"}, "selector":"(//s:Submit/s:request/s:merchantReferenceCode)"}}
+                ],
+                "decorate": "function (request, response, logger) {var d=new Date(); response.body=response.body.replace(/\\$RDT/g, d.toISOString()); d.setMilliseconds(d.getMilliseconds() + 200); response.body=response.body.replace(/\\$ADT/g, d.toISOString()); response.headers.Date=new Date().toUTCString(); console.log(response.body); }"
+            }
+        }]
+    },
+    {
+        "predicates": [
+            { "equals": {"method": "POST" } },
+            { "equals": { "path": "/Freeway/Service.asmx" } },
+            {
+                "xpath": { 
+                    "ns" : {"s":"http://freeway.freedompay.com/"},
+                    "selector": "//s:Submit/s:request/s:ccCaptureService[@run='true']"},
+                "exists": { "body": true },
+                "caseSensitive": true
+            }
+        ],
+        "responses": [{ 
+            "is": { 
+                "statusCode": 200,
+                "headers": {
+                    "Cache-Control": "private, max-age=0",
+                    "Content-Type": "text/xml; charset=utf-8",
+                    "Server": "Microsoft-IIS/8.5",
+                    "X-AspNet-Version": "4.0.30319",
+                    "X-Powered-By": "ASP.NET",
+                    "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+                    "Date": "Thu, 29 Jun 2023 16:43:44 GMT",
+                    "Content-Length": "1402"
+                },
+                "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soap:Body><SubmitResponse xmlns=\"http://freeway.freedompay.com/\"><SubmitResult><requestID>01Z6L4KJKV97U6DAVH3P4Q4UO728C32H</requestID><merchantReferenceCode>$MRC</merchantReferenceCode><networkData><network>FREEWAY</network></networkData><reasonCode>100</reasonCode><ccCaptureReply><partialAmount>N</partialAmount><purchasingLevel3Enabled>N</purchasingLevel3Enabled><amount>123.58</amount><processorResponseCode>100</processorResponseCode><processorTransactionID>190079557</processorTransactionID><reconciliationID>190079557</reconciliationID><processorResponseMessage>APPROVED</processorResponseMessage><reasonCode>100</reasonCode><enhancedDataEnabled>N</enhancedDataEnabled><requestDateTime>$RDT</requestDateTime></ccCaptureReply><decision>ACCEPT</decision></SubmitResult></SubmitResponse></soap:Body></soap:Envelope>"},
+            "_behaviors" : {
+                "copy" : [
+                    {"from":"body", "into":"$MRC", "using":{"method":"xpath","ns":{"s":"http://freeway.freedompay.com/"}, "selector":"(//s:Submit/s:request/s:merchantReferenceCode)"}}
+                ],
+                "decorate": "function (request, response, logger) {var d=new Date(); response.body=response.body.replace(/\\$RDT/g, d.toISOString()); response.headers.Date=new Date().toUTCString();}"
+            }
+        }]
+    },
+    {
+        "predicates": [
+            { "equals": {"method": "POST" } },
+            { "equals": { "path": "/Freeway/Service.asmx" } },
+            {
+                "xpath": { 
+                    "ns" : {"s":"http://freeway.freedompay.com/"},
+                    "selector": "//s:Submit/s:request/s:dccService[@run='true']"},
+                "exists": { "body": true },
+                "caseSensitive": true
+            }
+        ],
+        "responses": [{ 
+            "is": { 
+                "statusCode": 200,
+                "headers": {
+                    "Cache-Control": "private, max-age=0",
+                    "Content-Type": "text/xml; charset=utf-8",
+                    "Server": "Microsoft-IIS/8.5",
+                    "X-AspNet-Version": "4.0.30319",
+                    "X-Powered-By": "ASP.NET",
+                    "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+                    "Date": "Thu, 29 Jun 2023 16:43:44 GMT",
+                    "Content-Length": "1402"
+                },
+                "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soap:Body><SubmitResponse xmlns=\"http://freeway.freedompay.com/\"><SubmitResult><decision>ACCEPT</decision><merchantReferenceCode>$MRC</merchantReferenceCode><reasonCode>701</reasonCode><dccReply><supported>Y</supported><rateLifetime>3769</rateLifetime><rateSource>REUTERS WHOLESALE INTERBANK</rateSource><foreignCurrency>344</foreignCurrency><rateTimestamp>20090101 00:01</rateTimestamp><reasonCode>701</reasonCode><foreignCurrencyScale>2</foreignCurrencyScale><foreignAmount>937.31</foreignAmount><margin>3.0000</margin><rate>7.8109</rate><processorResponseCode>0</processorResponseCode><foreignCurrencyAlpha>HKD</foreignCurrencyAlpha></dccReply><requestID>01Z6L4KJLV97U6DAVH3TNH0TI99UAB6O</requestID></SubmitResult></SubmitResponse></soap:Body></soap:Envelope>"},
+            "_behaviors" : {
+                "copy" : [
+                    {"from":"body", "into":"$MRC", "using":{"method":"xpath","ns":{"s":"http://freeway.freedompay.com/"}, "selector":"(//s:Submit/s:request/s:merchantReferenceCode)"}}
+                ],
+                "decorate": "function (request, response, logger) {response.headers.Date=new Date().toUTCString();}"
+            }
+        }]
+    },
+    {
+        "predicates": [
+            { "equals": {"method": "POST" } },
+            { "equals": { "path": "/Freeway/Service.asmx" } },
+            {
+                "xpath": { 
+                    "ns" : {"s":"http://freeway.freedompay.com/"},
+                    "selector": "//s:Submit/s:request/s:ccCreditService[@run='true']"},
+                "exists": { "body": true },
+                "caseSensitive": true
+            }
+        ],
+        "responses": [{ 
+            "is": { 
+                "statusCode": 200,
+                "headers": {
+                    "Cache-Control": "private, max-age=0",
+                    "Content-Type": "text/xml; charset=utf-8",
+                    "Server": "Microsoft-IIS/8.5",
+                    "X-AspNet-Version": "4.0.30319",
+                    "X-Powered-By": "ASP.NET",
+                    "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+                    "Date": "Thu, 29 Jun 2023 16:43:44 GMT",
+                    "Content-Length": "1402"
+                },
+                "body": "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soap:Body><SubmitResponse xmlns=\"http://freeway.freedompay.com/\"><SubmitResult><reasonCode>100</reasonCode><requestID>01Z6L4KJPM97U6DAVH5KBOM3J6AGOD79</requestID><networkData><network>FREEWAY</network></networkData><merchantReferenceCode>$MRC</merchantReferenceCode><ccCreditReply><amount>100.99</amount><reasonCode>100</reasonCode><processorResponseCode>100</processorResponseCode><reconciliationID>190079591</reconciliationID><processorResponseMessage>APPROVED</processorResponseMessage><purchasingLevel3Enabled>N</purchasingLevel3Enabled><requestDateTime>$RDT</requestDateTime><partialAmount>N</partialAmount><processorTransactionID>190079591</processorTransactionID><enhancedDataEnabled>N</enhancedDataEnabled><authorizationCode>079591</authorizationCode></ccCreditReply><decision>ACCEPT</decision><tokenInformation><cardExpirationMonth>$CEM</cardExpirationMonth><brand>VS</brand><accountNumberMasked>$AN</accountNumberMasked><cardType>credit</cardType><cardExpirationYear>$CEY</cardExpirationYear></tokenInformation></SubmitResult></SubmitResponse></soap:Body></soap:Envelope>"},
+            "_behaviors" : {
+                "copy" : [
+                    {"from":"body", "into":"$AN", "using":{"method":"xpath","ns":{"s":"http://freeway.freedompay.com/"}, "selector":"(//s:Submit/s:request/s:card/s:accountNumber)"}},
+                    {"from":"body", "into":"$CEY", "using":{"method":"xpath","ns":{"s":"http://freeway.freedompay.com/"}, "selector":"(//s:Submit/s:request/s:card/s:expirationYear)"}},
+                    {"from":"body", "into":"$CEM", "using":{"method":"xpath","ns":{"s":"http://freeway.freedompay.com/"}, "selector":"(//s:Submit/s:request/s:card/s:expirationMonth)"}},
+                    {"from":"body", "into":"$MRC", "using":{"method":"xpath","ns":{"s":"http://freeway.freedompay.com/"}, "selector":"(//s:Submit/s:request/s:merchantReferenceCode)"}}
+                ],
+                "decorate": "function (request, response, logger) {response.headers.Date=new Date().toUTCString();}"
+            }
+        }]
+    }]
+}
