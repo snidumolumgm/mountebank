@@ -3,17 +3,17 @@ version: 2.1
 executors:
   node-maintenance:
     docker:
-      - image: cimg/node:lts # eslint stopped supporting v14
+      - image: cimg/node:16.20.2
     environment:
       - MB_SLOW_TEST_TIMEOUT: 10000
   node-active:
     docker:
-      - image: cimg/node:lts
+      - image: cimg/node:18.17.1
     environment:
       - MB_SLOW_TEST_TIMEOUT: 10000
   node-current:
     docker:
-      - image: cimg/node:current
+      - image: cimg/node:20.5.1
     environment:
       - MB_SLOW_TEST_TIMEOUT: 10000
 
@@ -81,10 +81,6 @@ jobs:
       - run: choco uninstall nvm.portable -y
       - run: choco install nvm --version=1.1.9 -y
       - run: choco install wget -y
-      - run:
-          command: wget https://nodejs.org/dist/latest-v18.x/node-v18.16.0-x86.msi -P C:\Users\circleci\Downloads\
-          shell: cmd.exe
-      - run: MsiExec.exe /i C:\Users\circleci\Downloads\node-v18.16.0-x86.msi /qn
       - run:
           command: |
             Start-Process powershell -verb runAs -Args "-start GeneralProfile"
